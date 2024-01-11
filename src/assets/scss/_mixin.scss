@@ -1,0 +1,111 @@
+// design size
+$design-d: 1440;
+$design-t: 1000;
+$design-m: 750;
+
+// Change $target to vw from px
+@function get-vw($target, $standard) {
+  @if $target == 0 {
+    @return 0;
+  } @else if $target == auto {
+    @return auto;
+  } @else {
+    $dimension: calc($target / 1px);
+    @return calc($dimension/$standard) * 100vw;
+  }
+}
+
+@mixin breakpoint($size) {
+  @if $size == desktop {
+    @media (min-width: 769px) {
+      @content;
+    }
+  } @else if $size == notebook {
+    @media (min-width: 769px) and (max-width: 1441px) {
+      @content;
+    }
+  } @else if $size == tablet {
+    @media (min-width: 769px) and (max-width: 1024px) {
+      @content;
+    }
+  } @else if $size == mobile {
+    @media (max-width: 768px) {
+      @content;
+    }
+  }
+}
+
+@function vw($target, $viewport-size: $design-m) {
+  @if type-of($target) == number {
+    @return #{(calc($target * 100 / $viewport-size))}vw;
+  } @else if type-of($target) == list {
+    $vw: ();
+    @each $value in $target {
+      @if type-of($value) == number {
+        $vw: append($vw, #{(calc($value * 100 / $viewport-size))}vw);
+      } @else if type-of($value) == string {
+        $vw: append($vw, $value);
+      }
+    }
+    @return $vw;
+  } @else {
+    @return $target;
+  }
+}
+
+// font size
+@mixin font-size($design, $font, $min: false) {
+  @if $design == D {
+    // desktop
+    @if not($min) {
+      $min: calc($font * 2 / 3);
+    }
+    @if $min < 12px {
+      $min: 12px;
+    }
+    $standard: $design-d;
+    $responsive: get-vw($font, $standard);
+    @media (min-width: #{$standard + 1}px) {
+      font-size: $font;
+    }
+    @media (min-width: #{$design-m + 1}px) and (max-width: #{$standard}px) {
+      font-size: $responsive;
+    }
+    $responsive-unitless: calc($responsive / 1vw);
+    @if $min {
+      $min-breakpoint: calc(calc($min / 1px) / $responsive-unitless) * 100;
+      @if ($min-breakpoint<$design-m) {
+        // in desktop, out of maximum permissible range
+      } @else {
+        @media (min-width: #{$design-m + 1}px) and (max-width: #{$min-breakpoint}px) {
+          font-size: $min;
+        }
+      }
+    }
+  } @else {
+    // mobile
+    @if not($min) {
+      $min: calc($font / 2);
+    }
+    font-size: get-vw($font, $design-m);
+    $responsive: get-vw($font, $design-m);
+    @media (min-width: 350px) and (max-width: #{$design-m}px) {
+      font-size: $responsive;
+    }
+    $responsive-unitless: calc($responsive/1vw);
+    $min-breakpoint: calc(calc($min/1px) / $responsive-unitless) * 100;
+    @if $min {
+      $min-breakpoint: calc($min / $responsive-unitless) * 100;
+      @if ($min-breakpoint>=$design-m) {
+        // in desktop, out of maximum permissible range
+      } @else {
+        @media (min-width: 350px) and (max-width: #{$min-breakpoint}px) {
+          font-size: $min;
+        }
+      }
+    }
+    @media (max-width: 319px) {
+      font-size: $min;
+    }
+  }
+}
