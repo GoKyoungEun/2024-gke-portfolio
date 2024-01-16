@@ -1,0 +1,319 @@
+/*
+* Functions
+*/
+// Change $target to vw from px
+@function get-vw($target, $standard) {
+    @if $target == 0 {
+        @return 0;
+    } @else if $target == auto {
+        @return auto;
+    } @else {
+        $dimension: calc($target / 1px);
+        @return calc($dimension/$standard) * 100vw;
+    }
+}
+
+/*
+* Font
+*/
+@mixin font-weight($fw) {
+	@if $fw == Black {
+		font-weight: 900;
+	}
+	@if $fw == ExtraBold {
+		font-weight: 800;
+	}
+	@if $fw == Bold {
+		font-weight: 700;
+	}
+	@if $fw == SemiBold {
+		font-weight: 600;
+	}
+	@if $fw == Medium {
+		font-weight: 500;
+	}
+	@if $fw == Regular {
+		font-weight: 400;
+	}
+	@if $fw == Light {
+		font-weight: 300;
+	}
+	@if $fw == ExtraLight {
+		font-weight: 200;
+	}
+	@if $fw == Thin {
+		font-weight: 100;
+	}
+}
+
+// font size
+@mixin font-size($design, $font, $min: false) {
+	@if $design == D {
+		// desktop
+		@if not($min) {
+			$min: calc($font * 2 / 3);
+		}
+		@if $min < 12px {
+			$min: 12px;
+		}
+		$standard: $design-d;
+		$responsive: get-vw($font, $standard);
+		@media (min-width: #{$standard + 1}px) {
+			font-size: $font;
+		}
+		@media (min-width: #{$design-m + 1}px) and (max-width: #{$standard}px) {
+			font-size: $responsive;
+		}
+		$responsive-unitless: calc($responsive / 1vw);
+		@if $min {
+			$min-breakpoint: calc(calc($min / 1px) / $responsive-unitless) * 100;
+			@if ($min-breakpoint<$design-m) {
+				// in desktop, out of maximum permissible range
+			} @else {
+				@media (min-width: #{$design-m + 1}px) and (max-width: #{$min-breakpoint}px) {
+					font-size: $min;
+				}
+			}
+		}
+	} @else {
+		// mobile
+		@if not($min) {
+			$min: calc($font / 2);
+		}
+		font-size: get-vw($font, $design-m);
+		$responsive: get-vw($font, $design-m);
+		@media (min-width: 375px) and (max-width: #{$design-m}px) {
+			font-size: $responsive;
+		}
+		$responsive-unitless: calc($responsive/1vw);
+		$min-breakpoint: calc(calc($min/1px) / $responsive-unitless) * 100;
+		@if $min {
+			$min-breakpoint: calc($min / $responsive-unitless) * 100;
+			@if ($min-breakpoint>=$design-m) {
+				// in desktop, out of maximum permissible range
+			} @else {
+				@media (min-width: 375px) and (max-width: #{$min-breakpoint}px) {
+					font-size: $min;
+				}
+			}
+		}
+		@media (max-width: 374px) {
+			font-size: $min;
+		}
+	}
+}
+
+// Calculate line-height to percent from px
+@mixin line-height($font, $line) {
+	@if $line== "auto" {
+		line-height: 175%;
+	} @else {
+		$line-height: calc(($line * 100) / $font) * 1%;
+		line-height: #{$line-height};
+	}
+}
+
+/*
+* Responsive web
+*/
+// media query
+@mixin screen($size, $type: min, $pixels: $design-m) {
+	@if $size == "desktop" {
+		@media (min-width: 769px) {
+			@content;
+		}
+	} @else if $size == "tablet" {
+		@media (min-width: 769px) and (max-width: #{$design-d}px) {
+			@content;
+		}
+	} @else if $size == "landscape" {
+		@media (orientation: landscape) {
+			@content;
+		}
+	} @else if $size == "portrait" {
+		@media (orientation: portrait) {
+			@content;
+		}
+	} @else if $size == "custom" {
+		@media (#{$type}-width: #{$pixels}px) {
+			@content;
+		}
+	}
+}
+// Calculate $target to vw from px, Unit(px) is always required for $var.
+@mixin res-vw($design, $target, $value...) {
+	$standard: 0;
+	@if $design == D {
+		$standard: $design-d;
+	} @else if $design == M {
+		$standard: $design-m;
+	} @else {
+		$standard: $design;
+	}
+	// @debug get-vw(50px, 750);
+
+	@if length($value) == 4 {
+		#{$target}: (get-vw(nth($value, 1), $standard))
+			(get-vw(nth($value, 2), $standard))
+			(get-vw(nth($value, 3), $standard))
+			(get-vw(nth($value, 4), $standard));
+		@if $design == D {
+			@media (min-width: #{$design-d + 1}px) {
+				#{$target}: (nth($value, 1) nth($value, 2) nth($value, 3) nth($value, 4));
+			}
+		}
+	} @else if length($value) == 3 {
+		#{$target}: (get-vw(nth($value, 1), $standard))
+			(get-vw(nth($value, 2), $standard))
+			(get-vw(nth($value, 3), $standard));
+		@if $design == D {
+			@media (min-width: #{$design-d + 1}px) {
+				#{$target}: (nth($value, 1) nth($value, 2) nth($value, 3));
+			}
+		}
+	} @else if length($value) == 2 {
+		#{$target}: (get-vw(nth($value, 1), $standard)) (get-vw(nth($value, 2), $standard));
+		@if $design == D {
+			@media (min-width: #{$design-d + 1}px) {
+				#{$target}: (nth($value, 1) nth($value, 2));
+			}
+		}
+	} @else {
+		#{$target}: (get-vw(nth($value, 1), $standard));
+		@if $design == D {
+			@media (min-width: #{$design-d + 1}px) {
+				#{$target}: (nth($value, 1));
+			}
+		}
+	}
+}
+
+/*
+* Etc
+*/
+// image ratio
+@mixin aspect-ratio($width, $height) {
+	position: relative;
+	&:before {
+		display: block;
+		content: "";
+		width: 100%;
+		padding-top: calc($height / $width) * 100%;
+	}
+	> picture,
+	> img,
+	> video,
+	> iframe {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		width: 100%;
+	}
+}
+
+// no-list
+@mixin no-list() {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	li {
+		margin: 0;
+	}
+}
+
+// clearfix
+@mixin clearfix() {
+	&:before,
+	&:after {
+		content: " ";
+		display: table;
+	}
+
+	&:after {
+		display: block;
+		clear: both;
+		height: 1px;
+		margin-top: -1px;
+		visibility: hidden;
+	}
+	& {
+		*zoom: 1;
+	}
+}
+
+// Bleet
+@mixin list-disc($color, $size, $top) {
+	&:before {
+		content: "";
+		position: absolute;
+		left: 0;
+		top: 0;
+		min-width: 3px;
+		min-height: 3px;
+		background-color: $color;
+		border-radius: 50%;
+		@include res-vw(M, width, $size);
+		@include res-vw(M, height, $size);
+		@include res-vw(M, margin-top, ($size * 2) * 2);
+		@include screen("desktop") {
+			@include res-vw(D, width, $size);
+			@include res-vw(D, height, $size);
+			@include res-vw(D, margin-top, $top);
+		}
+	}
+}
+// Dimed
+@mixin dimed-layer($opacity) {
+	&:after {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background-color: hsla(0, 0%, 0%, $opacity);
+	}
+}
+
+// Pannel flag
+@mixin pannel-flag {
+	.lcd-pannel,
+	.oled-pannel {
+		&:after {
+			white-space: nowrap;
+			position: absolute;
+			color: $color-white;
+			@include res-vw(M, top, 10px * 2);
+			@include res-vw(M, padding, 4px * 2, 10px * 2);
+			@include res-vw(M, border-radius, 40px * 2);
+			@include font-weight(Bold);
+			@include font-size(M, 15px * 2);
+			@include line-height(15px, 20px);
+			@include screen("desktop") {
+				@include res-vw(D, top, (20px - 1px));
+				@include res-vw(D, padding, 8px, 20px);
+				@include res-vw(D, font-size, 20px);
+				@include res-vw(D, line-height, 30px);
+			}
+		}
+	}
+	.oled-pannel:after {
+		content: "OLED";
+		background-color: $color-red;
+		@include res-vw(M, right, 10px * 2);
+		@include screen("desktop") {
+			@include res-vw(D, right, 30px);
+		}
+	}
+	.lcd-pannel:after {
+		content: "LCD";
+		background-color: $color-black;
+		@include res-vw(M, left, 10px * 2);
+		z-index: 5;
+		@include screen("desktop") {
+			@include res-vw(D, left, 30px);
+		}
+	}
+}

@@ -1,1901 +1,297 @@
-@use "mixin" as *;
-@use "btn" as *;
+@import "./partials/mixins";
+@import "./partials/variables";
 
-$img-url: "//images.samsung.com/is/image/samsung/assets/global/ir/imgs/";
-// $img-url: "//images.samsung.com/kdp/ir/assets/";
-
-#pauseBtn {
-  color: #fff;
-}
-.kvbtn {
-  display: none;
-  background-size: auto 100%;
-  background-repeat: no-repeat;
-  &.size-regular {
-    width: 16px;
-    height: 16px;
-    @include breakpoint(notebook) {
-      width: vw(16, $design-d);
-      height: vw(16, $design-d);
-    }
-    @include breakpoint(mobile) {
-      width: vw(16, $design-m);
-      height: vw(16, $design-m);
-    }
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
   }
-  &.active {
-    display: inline-block;
+  body {
+    overflow-x: hidden;
+    font-family: 'IBM Plex Sans KR', sans-serif;
+    font-weight: 400;
   }
-}
-.text-box {
-  .data {
-    font-weight: 700;
-    font-size: 16px;
-    line-height: 19px;
-    @include breakpoint(notebook) {
-      @include font-size(D, 16px);
-      line-height: vw(19, $design-d);
-    }
-    @include breakpoint(mobile) {
-      @include font-size(M, 15px);
-      line-height: vw(18, $design-m);
-    }
-  }
-  .title {
-    font-family: "SamsungSharpSans", arial, sans-serif;
-    font-weight: 700;
-    font-size: 76px;
-    line-height: 91px;
-    padding-top: 16px;
-    @include breakpoint(notebook) {
-      @include font-size(D, 76px, 45px);
-      line-height: vw(91, $design-d);
-      padding-top: vw(16, $design-d);
-    }
-    @include breakpoint(mobile) {
-      @include font-size(M, 38px);
-      line-height: vw(45, $design-m);
-      padding-top: vw(10, $design-m);
-    }
-  }
-  .sub-title {
-    font-family: "SamsungSharpSans", arial, sans-serif;
-    font-weight: 700;
-    font-size: 56px;
-    line-height: 67px;
-    padding-top: 16px;
-    @include breakpoint(notebook) {
-      @include font-size(D, 56px);
-      line-height: vw(67, $design-d);
-      padding-top: vw(16, $design-d);
-    }
-    @include breakpoint(mobile) {
-      @include font-size(M, 38px);
-      line-height: vw(45, $design-m);
-      padding-top: vw(10, $design-m);
-    }
-  }
-  .dese {
-    font-weight: 700;
-    font-size: 22px;
-    line-height: 29px;
-    padding-top: 4px;
-    @include breakpoint(notebook) {
-      @include font-size(D, 22px);
-      line-height: vw(29, $design-d);
-      padding-top: vw(4, $design-d);
-    }
-    @include breakpoint(mobile) {
-      @include font-size(M, 17px);
-      line-height: vw(22, $design-m);
-      padding-top: vw(6, $design-m);
-    }
-  }
-}
-.ir-main-title {
-  .title {
-    text-align: center;
-    font-weight: 700;
-    a {
-      font-family: "SamsungSharpSans", arial, sans-serif;
-      color: #fff;
-      font-size: 56px;
-      line-height: 67px;
-      @include breakpoint(notebook) {
-        @include font-size(D, 56px);
-        line-height: vw(67, $design-d);
-      }
-      @include breakpoint(mobile) {
-        @include font-size(M, 31px);
-        line-height: vw(39, $design-m);
-      }
-    }
-  }
-}
-.main {
-  display: block;
-  position: relative;
-}
-.ir-main-wrap {
-  .ir-main-kv {
-    height: 33.333333vw;
-    max-height: 640px;
-    width: 100%;
-    @include breakpoint(mobile) {
-      height: vw(562, $design-m);
-      max-height: max-content;
-    }
-    > &.swiper.mySwiper2 {
-      margin-left: auto;
-      margin-right: auto;
-      position: relative;
-      overflow: hidden;
-      list-style: none;
-      padding: 0;
-      display: block;
-      max-width: 1920px;
-      .swiper-wrapper {
-        position: relative;
-        width: 100%;
-        height: 100%;
-        max-height: vw(640, $design-d);
-        display: flex;
-        transition-property: transform;
-        box-sizing: content-box;
-        @include breakpoint(mobile) {
-          max-height: max-content;
-        }
-        .swiper-slide {
-          flex-shrink: 0;
-          width: 100%;
-          height: 100%;
-          position: relative;
-          transition-property: transform;
-          // display: block;
-          background-color: #303030;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-      }
-    }
-    .swiper-button-prev,
-    .swiper-rtl {
-      left: 61px;
-      right: auto;
-      @include breakpoint(notebook) {
-        left: vw(61, $design-d);
-      }
-      @include breakpoint(mobile) {
-        left: vw(20, $design-m);
-      }
-    }
-    .swiper-button-next,
-    .swiper-rtl {
-      right: 61px;
-      left: auto;
-      @include breakpoint(notebook) {
-        right: vw(61, $design-d);
-      }
-      @include breakpoint(mobile) {
-        right: vw(20, $design-m);
-      }
-    }
-    .swiper-button-next,
-    .swiper-button-prev {
-      position: absolute;
-      top: 50%;
-      width: 22px;
-      height: 40px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      display: inline-block;
-      background-size: auto 100%;
-      background-repeat: no-repeat;
-      transform: translateY(-50%);
-      color: transparent;
-      margin: 0;
-      z-index: 4;
-      @include breakpoint(mobile) {
-        width: vw(25, $design-m);
-        height: vw(25, $design-m);
-      }
-      &.hidden {
-        display: none;
-      }
-    }
-    .swiper-button-prev {
-      background-image: url($img-url + "swiper-button-prev2.png");
-      @include breakpoint(mobile) {
-        background-image: url($img-url + "swiper-button-prev-m.png");
-      }
-    }
-    .swiper-button-next {
-      background-image: url($img-url + "swiper-button-next2.png");
-      @include breakpoint(mobile) {
-        background-image: url($img-url + "swiper-button-next-m.png");
-      }
-    }
-    .swiper-pagination-wrap {
-      position: absolute;
-      bottom: 47px;
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      @include breakpoint(notebook) {
-        bottom: vw(30, $design-d);
-      }
-      @include breakpoint(mobile) {
-        bottom: vw(37, $design-m);
-      }
-      &.hidden {
-        display: none;
-      }
-      .swiper-pagination {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 16px;
-        position: relative;
-        transition: none;
-        transform: none;
-        @include breakpoint(mobile) {
-          gap: vw(8, $design-m);
-        }
-        &-bullet {
-          display: inline-block;
-          background: rgba(255, 255, 255, 0.2);
-          cursor: pointer;
-          position: relative;
-          width: 165px;
-          height: 2px;
-          transition: width 1s linear;
-          opacity: 1;
-          border-radius: 0;
-          @include breakpoint(notebook) {
-            width: vw(165, $design-d);
-            min-width: 126px;
-          }
-          @include breakpoint(mobile) {
-            width: vw(26, $design-m);
-            height: vw(2, $design-m);
-          }
-          @include breakpoint(desktop) {
-            font-weight: 700;
-            &:nth-child(1) {
-              &::before {
-                text-align: center;
-                width: 100%;
-                content: "Notice of Record Date";
-                display: block;
-                color: #fff;
-                font-size: 14px;
-                line-height: 14px;
-                position: absolute;
-                bottom: 0;
-                left: 50%;
-                transform: translate(-50%, -20%);
-                padding-bottom: 4.5px;
-                white-space: nowrap;
-                @include breakpoint(notebook) {
-                  @include font-size(D, 14px);
-                  line-height: vw(14, $design-d);
-                  padding-bottom: vw(4.5, $design-d);
-                }
-                @include breakpoint(tablet) {
-                  @include font-size(D, 14px);
-                  line-height: vw(14, $design-d);
-                }
-              }
-            }
-            &:nth-child(2) {
-              &::before {
-                text-align: center;
-                width: 100%;
-                content: "Investor Relations";
-                display: block;
-                color: #fff;
-                font-size: 14px;
-                line-height: 14px;
-                position: absolute;
-                bottom: 0;
-                left: 50%;
-                transform: translate(-50%, -20%);
-                padding-bottom: 4.5px;
-                white-space: nowrap;
-                @include breakpoint(notebook) {
-                  @include font-size(D, 14px);
-                  line-height: vw(14, $design-d);
-                  padding-bottom: vw(4.5, $design-d);
-                }
-              }
-            }
-            &:nth-child(3) {
-              &::before {
-                text-align: center;
-                width: 100%;
-                content: "Investor Relations";
-                display: block;
-                color: #fff;
-                font-size: 14px;
-                line-height: 14px;
-                position: absolute;
-                bottom: 0;
-                left: 50%;
-                transform: translate(-50%, -20%);
-                padding-bottom: 4.5px;
-                white-space: nowrap;
-                @include breakpoint(notebook) {
-                  @include font-size(D, 14px);
-                  line-height: vw(14, $design-d);
-                  padding-bottom: vw(4.5, $design-d);
-                }
-              }
-            }
-          }
-          &:after {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 0;
-            height: 100%;
-            background-color: #fff;
-          }
-          &-active {
-            background-color: #fff;
-            width: 165px;
-            opacity: 1;
-            @include breakpoint(notebook) {
-              width: vw(165, $design-d);
-              min-width: 126px;
-            }
-            @include breakpoint(mobile) {
-              width: vw(26, $design-m);
-            }
-          }
-          &.on {
-            position: relative;
-            width: 165px;
-            background: rgba(255, 255, 255, 0.2);
-            @include breakpoint(notebook) {
-              width: vw(165, $design-d);
-              min-width: 126px;
-            }
-            @include breakpoint(mobile) {
-              width: vw(26, $design-m);
-            }
-            &:after {
-              width: 100%;
-              transition: width 6s linear;
-            }
-          }
-          &.full {
-            width: 165px;
-            background-color: #fff;
-            @include breakpoint(notebook) {
-              width: vw(165, $design-d);
-              min-width: 126px;
-            }
-            @include breakpoint(mobile) {
-              width: vw(26, $design-m);
-            }
-          }
-        }
-      }
-      .btn-play,
-      .btn-pause {
-        margin-left: 16px;
-        background-size: 100%;
-        background-repeat: no-repeat;
-        z-index: 10;
-        @include breakpoint(notebook) {
-          margin-left: vw(16, $design-d);
-        }
-        @include breakpoint(mobile) {
-          margin-left: vw(8, $design-m);
-        }
-      }
-      .btn-play {
-        background-image: url($img-url + "ir-btn-play.png");
-      }
-      .btn-pause {
-        background-image: url($img-url + "ir-btn-pause.png");
-      }
-    }
-    .swiper .swiper-notification {
-      position: absolute;
-      left: 0;
-      top: 0;
-      pointer-events: none;
-      opacity: 0;
-      z-index: -1000;
-    }
-  }
-  .ir-main-kv-inner {
+  .layout-full {
     position: relative;
+    width: 100%;
     max-width: 1920px;
     margin: 0 auto;
+    padding: 0;
+  }
+  
+  .layout-visual {
+    position: relative;
     width: 100%;
-    height: 100%;
-    max-height: 44.4444444444vw;
-    display: flex;
-    box-sizing: content-box;
-    align-items: center;
+    max-width: 1600px;
+    margin: 0 auto;
+  }
+  .layout-content {
+    position: relative;
+    width: 100%;
+    @include res-vw("M", padding, 0, $paddingMobile);
+    @include screen("desktop") {
+      max-width: (1410px + $paddingTablet + $paddingTablet);
+      margin: 0 auto;
+      @include res-vw("D", padding, 0, $paddingTablet);
+    }
+  }
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  p + p {
+    @include screen("desktop") {
+      @include res-vw(D, padding-top, 30px);
+    }
+  }
+  .page {
+    width: 100%;
     overflow: hidden;
-    @include breakpoint(mobile) {
-      max-height: max-content;
-    }
+    height: 100vh;
   }
-  .swiper-slide,
-  .ir-main-kv-inner {
-    .image-area {
-      position: relative;
+  .sec-portfolio-kv {
+    background-color: #222;
+    position: relative;
+    .portfolio-kv-logo {
+      color: #fff;
       width: 100%;
-      height: 100%;
-      z-index: 0;
-      .img {
-        position: relative;
-        height: 100%;
-        img {
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          height: 100%;
-        }
-      }
-      .dimmed {
-        display: block;
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.3);
-        z-index: 1;
-      }
-    }
-    .floating-area {
-      position: absolute;
-      width: 100%;
-      z-index: 3;
-      margin-top: 0;
       text-align: center;
-      .text-box {
-        color: #fff;
-        width: 100%;
-        max-width: 1130px;
-        display: inline-block;
-        transition: all 0.1s linear;
-        padding: 0;
-        @include breakpoint(notebook) {
-          max-width: vw(1130, $design-d);
-        }
-        @include breakpoint(mobile) {
-          max-width: vw(235, $design-m);
-        }
-        .cta-wrap {
-          padding-top: 24px;
-          @include breakpoint(notebook) {
-            padding-top: vw(24, $design-d);
-          }
-          @include breakpoint(mobile) {
-            padding-top: vw(24, $design-m);
-          }
-        }
-
-        .btn-wrap {
-          padding-top: 24px;
-          gap: 10px;
-          display: flex;
-          flex-direction: row;
-          justify-content: center;
-          @include breakpoint(notebook) {
-            padding-top: vw(24, $design-d);
-            gap: vw(10, $design-d);
-          }
-          @include breakpoint(mobile) {
-            padding-top: vw(24, $design-m);
-            gap: vw(20, $design-m);
-            flex-direction: column;
-          }
-          .cta-wrap {
-            padding: 0;
-          }
-        }
+      @include res-vw(M, height, 100px);
+      @include screen("desktop") {
+        @include res-vw(D, height, 100px);
       }
-    }
-    &.ir-main-kv-performance-slide {
-      .floating-area {
-        .text-box {
-          font-weight: 700;
-          .eyebrow {
-            font-size: 40px;
-            line-height: 48px;
-            @include breakpoint(notebook) {
-              @include font-size(D, 26px);
-              line-height: vw(31, $design-d);
-            }
-            @include breakpoint(mobile) {
-              @include font-size(M, 24px);
-              line-height: vw(29, $design-m);
-            }
-          }
-          .title {
-            font-size: 56px;
-            line-height: 67px;
-            padding-top: 5px;
-            @include breakpoint(notebook) {
-              @include font-size(D, 56px);
-              line-height: vw(67, $design-d);
-              padding-top: vw(5, $design-d);
-            }
-            @include breakpoint(mobile) {
-              @include font-size(M, 31px);
-              line-height: vw(39, $design-m);
-              padding-top: vw(5, $design-m);
-            }
-          }
-          .data {
-            font-size: 22px;
-            line-height: 29px;
-            padding-top: 6px;
-            @include breakpoint(notebook) {
-              @include font-size(D, 22px);
-              line-height: vw(29, $design-d);
-              padding-top: vw(0, $design-d);
-            }
-            @include breakpoint(mobile) {
-              @include font-size(M, 15px);
-              line-height: vw(18, $design-m);
-              padding-top: vw(10, $design-m);
-            }
-          }
-          .dese {
-            max-width: 684px;
-            margin: 0 auto;
-            font-weight: 400;
-            font-size: 18px;
-            line-height: 24px;
-            padding-top: 16px;
-            @include breakpoint(notebook) {
-              @include font-size(D, 18px);
-              line-height: vw(24, $design-d);
-              padding-top: vw(12, $design-d);
-              max-width: vw(684, $design-d);
-            }
-          }
-          .performance-outlink-wrap {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 24px;
-            @include breakpoint(notebook) {
-              margin-top: vw(24, $design-d);
-              gap: vw(10, $design-d);
-            }
-            @include breakpoint(mobile) {
-              flex-direction: column;
-              margin-top: vw(24, $design-m);
-              gap: vw(10, $design-m);
-            }
-            .btn-wrap {
-              padding: 0;
-              display: flex;
-              flex-direction: row;
-              flex-wrap: wrap;
-              justify-content: center;
-              gap: 10px;
-              @include breakpoint(notebook) {
-                gap: vw(10, $design-d);
-              }
-              @include breakpoint(mobile) {
-                gap: vw(10, $design-m);
-                row-gap: vw(20, $design-m);
-                align-items: center;
-              }
-              .cta-wrap {
-                padding: 0;
-                .btn {
-                  white-space: nowrap;
-                }
-              }
-            }
-            .btn-title {
-              font-weight: 700;
-              font-size: 22px;
-              line-height: 29px;
-              @include breakpoint(notebook) {
-                @include font-size(D, 22px);
-                line-height: vw(29, $design-d);
-              }
-              @include breakpoint(mobile) {
-                @include font-size(M, 17px);
-                line-height: vw(22, $design-m);
-              }
-            }
-          }
-          .mobile-only {
-            display: none;
-            @include breakpoint(mobile) {
-              display: flex;
-              padding-top: vw(20, $design-m);
-            }
-          }
-        }
-      }
-    }
-  }
-
-  .ir-keyvisual__stock {
-    padding-top: 80px;
-    @include breakpoint(notebook) {
-      padding-top: vw(80, $design-d);
-    }
-    @include breakpoint(mobile) {
-      padding-top: vw(60, $design-m);
-    }
-    .ir-keyvisual__stock-inner {
-      position: relative;
-      background-color: #000d47;
-      padding: 34px;
-      border-radius: 20px;
-      @include breakpoint(notebook) {
-        padding: vw(34, $design-d);
-        border-radius: vw(20, $design-d);
-      }
-      @include breakpoint(mobile) {
-        padding: vw(40 10, $design-m);
-      }
-      .ir-content-box {
-        max-width: 1240px;
-        margin: 0 auto;
-        display: flex;
-        flex-direction: row;
-        color: #fff;
-        gap: 40px;
-        justify-content: space-between;
-        @include breakpoint(notebook) {
-          gap: vw(20, $design-d);
-        }
-        @include breakpoint(mobile) {
-          flex-direction: column;
-          text-align: center;
-          gap: vw(30, $design-m);
-        }
-      }
-      .ir-keyvisual__stock-chart {
-        display: flex;
-        flex-direction: column;
-        gap: 6px;
+      p {
         font-weight: 700;
-        @include breakpoint(mobile) {
-          gap: vw(8, $design-m);
-        }
-        .ir-keyvisual__stock-title {
-          font-family: "SamsungSharpSans", arial, sans-serif;
-          font-size: 28px;
-          line-height: 28px;
-          @include breakpoint(notebook) {
-            @include font-size(D, 28px);
-            line-height: vw(28, $design-d);
-          }
-          @include breakpoint(mobile) {
-            @include font-size(M, 28px);
-            line-height: vw(28, $design-m);
-          }
-        }
-        .ir-keyvisual__stock-time {
-          font-size: 18px;
-          line-height: 22px;
-          display: flex;
-          flex-direction: row;
-          align-items: center;
-          justify-content: center;
-          gap: 1px;
-          @include breakpoint(notebook) {
-            @include font-size(D, 18px);
-            line-height: vw(22, $design-d);
-          }
-          @include breakpoint(mobile) {
-            @include font-size(M, 16px);
-            line-height: vw(19, $design-m);
-          }
-          .js-date-month,
-          .js-date-day,
-          .js-date-time {
-            font-size: 18px;
-            line-height: 22px;
-            @include breakpoint(notebook) {
-              @include font-size(D, 18px);
-              line-height: vw(22, $design-d);
-            }
-            @include breakpoint(mobile) {
-              @include font-size(M, 16px);
-              line-height: vw(19, $design-m);
-            }
-          }
-        }
-      }
-      .wrap {
-        width: 886px;
-        overflow: hidden;
-        display: flex;
-        flex-direction: row;
-        @include breakpoint(notebook) {
-          width: vw(886, $design-d);
-        }
-        @include breakpoint(mobile) {
-          width: -webkit-fill-available;
-        }
-      }
-      .ir-scrolling-stock-info-wrap {
-        .ir-scrolling-stock-info-box {
-          display: flex;
-          flex-direction: row;
-        }
-      }
-      .roller.original {
-        animation: rollingleft1 33s linear infinite;
-      }
-      .roller.clone {
-        animation: rollingleft2 33s linear infinite;
-      }
-
-      @keyframes rollingleft1 {
-        0% {
-          transform: translateX(0);
-        }
-        50% {
-          transform: translateX(-100%);
-        }
-        50.01% {
-          transform: translateX(100%);
-        }
-        100% {
-          transform: translateX(0);
-        }
-      }
-
-      @keyframes rollingleft2 {
-        0% {
-          transition: translateX(0);
-        }
-        100% {
-          transform: translateX(-200%);
-        }
-      }
-      .ir-keyvisual__stock-info {
-        display: flex;
-        flex-shrink: 0;
-        flex-direction: column;
-        gap: 7px;
-        font-weight: 700;
-        white-space: nowrap;
-        width: auto;
-        padding-right: 20px;
-        @include breakpoint(notebook) {
-          gap: vw(7, $design-d);
-          padding-right: vw(20, $design-d);
-        }
-        @include breakpoint(mobile) {
-          gap: vw(10, $design-m);
-          width: vw(305, $design-m);
-          padding-right: 0;
-        }
-        .ir-keyvisual__stock-info-title {
-          font-size: 13px;
-          line-height: 16px;
-          color: #828bb2;
-          @include breakpoint(notebook) {
-            @include font-size(D, 13px);
-            line-height: vw(16, $design-d);
-          }
-          @include breakpoint(mobile) {
-            @include font-size(M, 14px);
-            line-height: vw(17, $design-m);
-          }
-        }
-        .ir-keyvisual__stock-fluctuant {
-          font-size: 16px;
-          line-height: 19px;
-          // display: flex;
-          // align-items: center;
-          // gap: 3px;
-          @include breakpoint(notebook) {
-            @include font-size(D, 16px);
-            line-height: vw(19, $design-d);
-            // gap: vw(2, $design-d);
-          }
-          @include breakpoint(mobile) {
-            display: flex;
-            align-items: center;
-            @include font-size(M, 14px);
-            line-height: vw(17, $design-m);
-            padding: vw(10 30 0 30, $design-m);
-            gap: vw(2, $design-m);
-          }
-          &.ir-keyvisual__stock-fluctuant--positive {
-            color: #ff3773;
-            &::after {
-              content: "";
-              display: inline-block;
-              background-image: url($img-url + "ir-icon-stock-up.png");
-              background-size: contain;
-              background-repeat: no-repeat;
-              width: 10px;
-              height: 8px;
-              padding-left: 3px;
-              margin-bottom: 2px;
-              @include breakpoint(notebook) {
-                width: vw(10, $design-d);
-                height: vw(8, $design-d);
-              }
-              @include breakpoint(mobile) {
-                margin: 0;
-                width: vw(10, $design-m);
-                height: vw(8, $design-m);
-              }
-            }
-          }
-          &.ir-keyvisual__stock-fluctuant--negative {
-            color: #09a6ff;
-            &::after {
-              content: "";
-              display: inline-block;
-              background-image: url($img-url + "ir-icon-stock-down.png");
-              background-size: contain;
-              background-repeat: no-repeat;
-              width: 10px;
-              height: 8px;
-              padding-left: 3px;
-              margin-bottom: 2px;
-              @include breakpoint(notebook) {
-                width: vw(10, $design-d);
-                height: vw(8, $design-d);
-              }
-              @include breakpoint(mobile) {
-                margin: 0;
-                width: vw(10, $design-m);
-                height: vw(8, $design-m);
-              }
-            }
-          }
-        }
-        .ir-stock-info-contents {
-          display: flex;
-          flex-direction: row;
-          align-items: baseline;
-          gap: 6px;
-          @include breakpoint(notebook) {
-            gap: vw(6, $design-d);
-          }
-          @include breakpoint(mobile) {
-            flex-direction: column;
-            align-items: center;
-            gap: vw(6, $design-m);
-          }
-        }
-        .ir-keyvisual__stock-price {
-          .ir-won,
-          .js-price-ask,
-          .point {
-            font-weight: 700;
-            font-size: 30px;
-            line-height: 30px;
-            @include breakpoint(notebook) {
-              @include font-size(D, 30px);
-              line-height: vw(30, $design-d);
-            }
-            @include breakpoint(mobile) {
-              @include font-size(M, 38px);
-              line-height: vw(38, $design-m);
-            }
-          }
-          .js-price-ask {
-            margin-left: -2px;
-            @include breakpoint(notebook) {
-              margin-left: vw(-2, $design-d);
-            }
-            @include breakpoint(mobile) {
-              margin-left: vw(-2, $design-m);
-            }
-          }
-        }
-        // .ir-keyvisual__stock-fluctuant {
-        //   .js-price-change,
-        //   .js-price-change-percent,
-        //   .ir-won,
-        //   .ir-percent,
-        //   .point {
-        //     font-size: 30px;
-        //     line-height: 30px;
-        //     @include breakpoint(notebook) {
-        //       @include font-size(D, 30px);
-        //       line-height: vw(30, $design-d);
-        //     }
-        //     @include breakpoint(mobile) {
-        //       @include font-size(M, 18px);
-        //       line-height: vw(22, $design-m);
-        //     }
-        //   }
-        //   .point {
-        //     padding-right: 6px;
-        //     @include breakpoint(notebook) {
-        //       padding-right: vw(6, $design-d);
-        //     }
-        //     @include breakpoint(mobile) {
-        //       padding-right: vw(8, $design-m);
-        //     }
-        //   }
-        // }
-      }
-      .ir-keyvisual__stock-fluctuant,
-      .ir-keyvisual__stock-price,
-      .ir-keyvisual__stock-time,
-      .ir-keyvisual__stock-title {
-        display: inline-block;
-        vertical-align: middle;
-        letter-spacing: 0;
-      }
-      .update {
-        font-weight: 500;
-        font-size: 14px;
-        line-height: 17px;
-        opacity: 0.7;
-        padding-left: 6px;
-        @include breakpoint(notebook) {
-          @include font-size(D, 14px);
-          line-height: vw(17, $design-d);
-          padding-left: vw(6, $design-d);
-        }
-        @include breakpoint(mobile) {
-          @include font-size(M, 12px);
-          line-height: vw(14, $design-m);
-          padding-left: vw(10, $design-m);
-        }
-      }
-      &.mobile {
-        overflow: hidden;
-        .swiper-pagination-wrap {
-          display: flex;
-          flex-direction: row;
-          justify-content: center;
-          align-items: center;
-          @include breakpoint(mobile) {
-            margin-top: vw(40, $design-m);
-          }
-          .swiper-pagination {
-            display: flex;
-            position: inherit;
-            text-align: center;
-            transition: 0.3s opacity;
-            transform: translate3d(0, 0, 0);
-            z-index: 10;
-            @include breakpoint(mobile) {
-              gap: vw(12, $design-m);
-            }
-            .swiper-pagination-bullet {
-              width: 8px;
-              height: 8px;
-              display: inline-block;
-              border-radius: 100%;
-              background-color: #757575;
-              opacity: 1;
-              &.swiper-pagination-bullet-active {
-                background-color: #fff;
-              }
-            }
-          }
-          .btn-play,
-          .btn-pause {
-            margin-left: 16px;
-            background-size: 100%;
-            background-repeat: no-repeat;
-            z-index: 10;
-            @include breakpoint(mobile) {
-              margin-left: vw(8, $design-m);
-              width: vw(16, $design-m);
-              height: vw(16, $design-m);
-            }
-          }
-          .btn-play {
-            background-image: url($img-url + "ir-btn-play.png");
-          }
-          .btn-pause {
-            background-image: url($img-url + "ir-btn-pause.png");
-          }
-        }
-        .swiper-button-next,
-        .swiper-button-prev {
-          position: absolute;
-          top: 50%;
-          cursor: pointer;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          display: inline-block;
-          background-size: auto 100%;
-          background-repeat: no-repeat;
-          transform: translateY(-50%);
-          color: transparent;
-          margin: 0;
-          z-index: 4;
-          @include breakpoint(mobile) {
-            width: vw(25, $design-m);
-            height: vw(25, $design-m);
-          }
-          &.hidden {
-            display: none;
-          }
-        }
-        .swiper-button-prev {
-          background-image: url($img-url + "swiper-button-prev2.png");
-          @include breakpoint(mobile) {
-            background-image: url($img-url + "swiper-button-prev-m.png");
-          }
-        }
-        .swiper-button-next {
-          background-image: url($img-url + "swiper-button-next2.png");
-          @include breakpoint(mobile) {
-            background-image: url($img-url + "swiper-button-next-m.png");
-          }
-        }
-        .swiper-button-prev,
-        .swiper-container-rtl .swiper-button-next {
-          left: 10px;
-          right: auto;
-        }
-        .swiper-button-next,
-        .swiper-container-rtl .swiper-button-prev {
-          right: 10px;
-          left: auto;
+        @include font-size(M, 40px);
+        @include line-height(40, 100);
+        @include screen("desktop") {
+          @include font-size(D, 30px);
+          @include line-height(30, 100);
         }
       }
     }
-    .pause,
-    .play {
+    .portfolio-kv-text {
+      text-align: center;
+      color: #fff;
       position: absolute;
-      width: 16px;
-      height: 16px;
-      top: 21px;
-      right: 23px;
-      background-size: auto 100%;
-      background-position: center;
-      background-repeat: no-repeat;
-      @include breakpoint(notebook) {
-        top: vw(17, $design-d);
-        right: vw(16, $design-d);
-        width: vw(16, $design-d);
-        height: vw(16, $design-d);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      .portfolio-kv-sub {
+        @include font-size(M, 40px);
+        @include font-size(D, 40px);
       }
-      @include breakpoint(mobile) {
+      .portfolio-kv-title {
+        white-space: nowrap;
+        @include font-size(M, 90px);
+        @include line-height(90, 130);
+        @include screen("desktop") {
+          @include font-size(D, 150px);
+          @include line-height(150, 200);
+        }
       }
-    }
-    .pause {
-      background-image: url($img-url + "ir-carousel-pause-icon.png"); /* 정지 이미지 경로로 변경 */
-    }
-
-    .play {
-      background-image: url($img-url + "ir-carousel-play-icon.png"); /* 재생 이미지 경로로 변경 */
     }
   }
-
-  .ir-quarterly-results {
-    color: #fff;
-    text-align: center;
-    .ir-quarterly-results-inner {
-      position: relative;
-      background-image: url($img-url + "ir-latest-quarterly-results-bg-d.jpg");
-      background-size: auto 100%;
-      background-position: center;
-      background-repeat: no-repeat;
-      @include breakpoint(mobile) {
-        background-image: url($img-url + "ir-latest-quarterly-results-bg-m.jpg");
-        // background-size: 100%;
+  .sec-portfolio-about {
+    background-color: #222;
+    height: max-content;
+    @include res-vw(M, padding, 120px, 0, 120px, 0);
+    @include screen("desktop") {
+      @include res-vw(D, padding, 120px, 0, 60px, 0);
+    }
+    .portfolio-about-content-wrap {
+      display: flex;
+      height: max-content;
+      justify-content: center;
+      flex-direction: column;
+      @include res-vw(M, gap, 100px);
+      @include screen("desktop") {
+        flex-direction: row;
+        @include res-vw(D, gap, 100px);
       }
-      .ir-content-box {
-        max-width: 1260px;
-        flex-direction: column;
-        gap: 50px;
-        @include breakpoint(notebook) {
-          gap: vw(50, $design-d);
+      .portfolio-about-img {
+        flex-shrink: 0;
+        position: relative;
+        @include res-vw(M, width, 600px);
+        margin: 0 auto;
+        @include screen("desktop") {
+          height: auto;
+          @include res-vw(D, width, 500px);
         }
-        @include breakpoint(mobile) {
-          gap: vw(30, $design-m);
+        .img-box {
+          background-repeat: no-repeat;
+          background-size: cover;
+          background-position: center center;
+          transition: all 0.5s ease;
+          @include res-vw(M, width, 300px);
+          @include res-vw(M, height, 343px);
+          @include screen("desktop") {
+            @include res-vw(D, width, 350px);
+            @include res-vw(D, height, 400px);
+          }
+          &.nomal-img {
+            background-image: url('../images/portfolio-about-data-rotate-img0-pc.jpg');
+
+          }
+          &.rotate-img {
+            position: absolute;
+            background-image: url('../images/portfolio-about-data-rotate-img0-pc.jpg');
+            @include res-vw(M, top, 20px);
+            @include res-vw(M, left, 280px);
+            transform: rotate(8deg);
+            @include screen("desktop") {
+              transform: rotate(16deg);
+              @include res-vw(D, top, 186px);
+              @include res-vw(D, left, 100px);
+            }
+          }
         }
-        .ir-main-title {
-          display: flex;
-          flex-direction: column;
-          gap: 16px;
-          @include breakpoint(notebook) {
-            gap: vw(16, $design-d);
+      }
+      .portfolio-about-text {
+        color: #ebebeb;
+        margin: 0 auto;
+        @include res-vw(M, max-width, 600px);
+        @include screen("desktop") {
+          @include res-vw(D, max-width, 780px);
+        }
+        h2 {
+          @include font-size(M, 40px);
+          @include res-vw(M, padding-bottom, 30px);
+          @include screen("desktop") {
+            @include font-size(D, 45px);
+            @include res-vw(D, padding-bottom, 35px);
           }
-          @include breakpoint(mobile) {
-            gap: vw(10, $design-m);
+        }
+        p {
+          word-break: normal;
+          overflow-wrap: break-word;
+          @include font-size(M, 30px);
+          @include line-height(30, 50);
+          @include screen("desktop") {
+            @include font-size(D, 28px);
+            @include line-height(28, 45);
           }
-          .sub-title {
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
-            gap: 14px;
+          strong {
             font-weight: 700;
-            @include breakpoint(notebook) {
-              gap: vw(14, $design-d);
+            cursor: pointer;
+            position: relative;
+            border-bottom: 1px solid #505050;
+            &::before{
+              content: '';
+              position: absolute;
+              width: 0;
+              height: 100%;
+              border-bottom: 1px solid #fff;
+              transition: 0.5s;
+              top: 0;
+              left: 50%;
+              transform: translateX(-50%);
             }
-            @include breakpoint(mobile) {
-              gap: vw(10, $design-m);
-            }
-            .version {
-              display: flex;
-              gap: 14px;
-              align-items: center;
-              @include breakpoint(notebook) {
-                gap: vw(14, $design-d);
-              }
-              @include breakpoint(mobile) {
-                gap: vw(10, $design-m);
-              }
-              p {
-                font-size: 40px;
-                line-height: 48px;
-                display: inline-block;
-                @include breakpoint(notebook) {
-                  @include font-size(D, 40px);
-                  line-height: vw(48, $design-d);
-                }
-                @include breakpoint(mobile) {
-                  @include font-size(M, 24px);
-                  line-height: vw(29, $design-m);
-                }
-                &.bar {
-                  width: 1px;
-                  height: 20px;
-                  background-color: #fff;
-                  @include breakpoint(notebook) {
-                    height: vw(20, $design-d);
-                  }
-                  @include breakpoint(mobile) {
-                    height: vw(14, $design-m);
-                  }
-                }
-              }
-            }
-            span {
-              font-size: 30px;
-              line-height: 36px;
-              @include breakpoint(notebook) {
-                @include font-size(D, 30px);
-                line-height: vw(36, $design-d);
-              }
-              @include breakpoint(mobile) {
-                @include font-size(M, 16px);
-                line-height: vw(19, $design-m);
-              }
-            }
-          }
-        }
-        .ir-quarterly-results-content {
-          display: flex;
-          flex-direction: row;
-          gap: 24px;
-          @include breakpoint(notebook) {
-            gap: vw(24, $design-d);
-          }
-          @include breakpoint(mobile) {
-            flex-wrap: wrap;
-            gap: vw(10 20, $design-m);
-          }
-          .ir-quarterly-results-content-box {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            flex: 1;
-            gap: 24px;
-            padding: 20px 0px 24px;
-            @include breakpoint(notebook) {
-              gap: vw(24, $design-d);
-              padding: vw(20 0 24, $design-d);
-            }
-            @include breakpoint(mobile) {
-              gap: vw(10, $design-m);
-              padding: vw(7 10, $design-m);
-            }
-          }
-          .icon-block {
-            width: 100px;
-            height: 100px;
-            @include breakpoint(notebook) {
-              width: vw(100, $design-d);
-              height: vw(100, $design-d);
-            }
-            @include breakpoint(mobile) {
-              width: vw(60, $design-m);
-              height: vw(60, $design-m);
-            }
-            img {
+            &:hover::before{
               width: 100%;
             }
           }
-          .text-block {
-            color: #fff;
-            font-weight: 700;
-            font-size: 18px;
-            line-height: 22px;
-            @include breakpoint(notebook) {
-              @include font-size(D, 18px);
-              line-height: vw(22, $design-d);
-            }
-            @include breakpoint(mobile) {
-              @include font-size(M, 15px);
-              line-height: vw(18, $design-m);
-            }
-            span {
-              vertical-align: text-top;
-              font-size: 14px;
-              line-height: 17px;
-            }
-          }
-        }
-        .cta-wrap {
-          @include breakpoint(mobile) {
-            margin-top: vw(10, $design-m);
-          }
-        }
-      }
-      .note {
-        color: #fff;
-        font-weight: 700;
-        position: absolute;
-        right: 24px;
-        bottom: 24px;
-        font-size: 14px;
-        line-height: 17px;
-        white-space: nowrap;
-        opacity: 0.7;
-        @include breakpoint(notebook) {
-          @include font-size(D, 14px);
-          line-height: vw(17, $design-d);
-          right: vw(24, $design-d);
-          bottom: vw(24, $design-d);
-        }
-        @include breakpoint(mobile) {
-          @include font-size(M, 12px);
-          line-height: vw(14, $design-m);
-          bottom: vw(20, $design-m);
-          right: 50%;
-          transform: translateX(50%);
         }
       }
     }
   }
-  .ir-event {
-    position: relative;
-    color: #fff;
+  .sec-portfolio-work {
+    background-color: #EFE2D2;
     overflow: hidden;
-    .ir-event-inner {
-      position: relative;
-      background-color: #000;
-      background-image: url($img-url + "ir-event-bg1-d.jpg");
-      background-size: 100%;
-      background-repeat: no-repeat;
-      background-position: center;
-      @include breakpoint(tablet) {
-        background-size: auto 100%;
-      }
-      @include breakpoint(mobile) {
-        background-image: url($img-url + "ir-event-bg1-m.jpg");
-        background-size: 100%;
-        background-position: top;
-      }
-      .ir-content-box {
+    .content-wrap {
+      width: 100%;
+      height: 100%;
+      @include screen("desktop") {
         display: flex;
-        flex-direction: column;
-        row-gap: 50px;
-        max-width: 968px;
-        @include breakpoint(notebook) {
-          row-gap: vw(50, $design-d);
-        }
-        @include breakpoint(mobile) {
+        flex-direction: row;
+      }
+      .svg-box {
+        display: none;
+        @include screen("desktop") {
+          display: block;
           box-sizing: border-box;
-          z-index: 3;
-          width: 100%;
-          margin: 0 auto;
-          row-gap: vw(30, $design-m);
+          height: 100%;
+          flex-shrink: 0;
+          @include res-vw(D, width, 600px);
         }
-        .ir-event-box {
-          display: flex;
-          flex-direction: column;
-          gap: 50px;
-          @include breakpoint(notebook) {
-            gap: vw(50, $design-d);
-          }
-          @include breakpoint(mobile) {
-            gap: vw(30, $design-m);
-          }
-          .ir-event-list {
-            display: flex;
-            flex-direction: row;
-            gap: 24px;
-            max-width: 968px;
-            margin: 0 auto;
-            justify-content: center;
-            @include breakpoint(notebook) {
-              gap: vw(24, $design-d);
-            }
-            @include breakpoint(mobile) {
-              flex-direction: column;
-              gap: vw(30, $design-m);
-              margin: inherit;
-            }
-            .ir-event-item {
-              font-weight: 700;
-              flex: 1;
-              .eyebrow {
-                font-size: 18px;
-                line-height: 22px;
-                padding-bottom: 20px;
-                @include breakpoint(notebook) {
-                  @include font-size(D, 18px);
-                  line-height: vw(22, $design-d);
-                }
-                @include breakpoint(mobile) {
-                  @include font-size(M, 16px);
-                  line-height: vw(19, $design-m);
-                  padding-bottom: vw(12, $design-m);
-                }
-              }
-              .title {
-                font-family: "SamsungSharpSans", arial, sans-serif;
-                font-size: 38px;
-                line-height: 46px;
-                padding-top: 22px;
-                border-top: 2px solid #fff;
-                @include breakpoint(notebook) {
-                  @include font-size(D, 38px);
-                  line-height: vw(46, $design-d);
-                }
-                @include breakpoint(mobile) {
-                  @include font-size(M, 23px);
-                  line-height: vw(30, $design-m);
-                  padding-top: vw(12, $design-m);
-                }
-              }
-              .schedule-item {
-                padding-top: 6px;
-                display: flex;
-                flex-direction: row;
-                gap: 10px;
-                align-items: center;
-                @include breakpoint(notebook) {
-                  @include font-size(D, 16px);
-                  line-height: vw(19, $design-d);
-                  padding-top: vw(6, $design-d);
-                  gap: vw(10, $design-d);
-                }
-                @include breakpoint(mobile) {
-                  flex-direction: column;
-                  gap: vw(5, $design-m);
-                  align-items: flex-start;
-                  @include font-size(M, 15px);
-                  line-height: vw(18, $design-m);
-                  padding-top: vw(6, $design-m);
-                }
-                .date {
-                  font-size: 16px;
-                  line-height: 19px;
-                  @include breakpoint(notebook) {
-                    @include font-size(D, 16px);
-                    line-height: vw(19, $design-d);
-                  }
-                  @include breakpoint(mobile) {
-                    @include font-size(M, 15px);
-                    line-height: vw(18, $design-m);
-                  }
-                }
-                .bar {
-                  width: 1px;
-                  height: 14px;
-                  background-color: #fff;
-                  @include breakpoint(notebook) {
-                    height: vw(14, $design-d);
-                  }
-                  @include breakpoint(mobile) {
-                    display: none;
-                  }
-                }
-              }
-              .cta-wrap {
-                padding-top: 20px;
-                @include breakpoint(mobile) {
-                  padding-top: vw(16, $design-m);
-                }
-              }
-            }
-          }
+        svg {
+          opacity: 0;
         }
       }
-    }
-  }
-  .ir-financial-statements {
-    color: #fff;
-    .ir-financial-statements-inner {
-      background-color: #303030;
-      background-image: url($img-url + "ir-latest-financial-statements-bg-d.jpg");
-      background-size: cover;
-      background-repeat: no-repeat;
-      @include breakpoint(mobile) {
-        background-image: url($img-url + "ir-latest-financial-statements-bg-m.jpg");
-        padding: vw(40 18, $design-m);
-      }
-      .ir-content-box {
-        max-width: 1156px;
-        margin: 0 auto;
+      .work-list {
+        background-color: #EFE2D2;
+        flex-shrink: 0;
+        height: 100%;
         display: flex;
-        flex-direction: column;
-        gap: 50px;
-        @include breakpoint(notebook) {
-          gap: vw(50, $design-d);
+        flex-direction: row;
+        @include res-vw(M, width, 3000px);
+        @include res-vw(M, gap, 50px);
+        @include screen("desktop") {
+          @include res-vw(D, width, 3000px);
+          @include res-vw(D, gap, 50px);
         }
-        @include breakpoint(mobile) {
-          gap: vw(30, $design-m);
-        }
-        .ir-downloads-all {
-          display: flex;
-          flex-direction: row;
-          gap: 60px;
-          @include breakpoint(notebook) {
-            gap: vw(60, $design-d);
-          }
-          @include breakpoint(mobile) {
-            flex-direction: column;
-            gap: vw(30, $design-m);
-          }
-          .ir-download-wrap {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            @include breakpoint(mobile) {
-              grid-template-columns: repeat(2, 1fr);
-              row-gap: vw(30, $design-m);
-            }
-            .download-item {
-              padding-right: 30px;
-              padding-left: 30px;
-              @include breakpoint(notebook) {
-                padding-right: vw(30, $design-d);
-                padding-left: vw(30, $design-d);
-              }
-              @include breakpoint(mobile) {
-                padding-left: 0;
-                padding-right: vw(15, $design-m);
-              }
-              &:nth-child(2),
-              &:nth-child(4) {
-                @include breakpoint(mobile) {
-                  padding-left: vw(15, $design-m);
-                  padding-right: vw(0, $design-m);
-                }
-              }
-              &.this-year {
-                border-left: 1px solid #aaa;
-                padding-right: 0px;
-                padding-left: 60px;
-                @include breakpoint(notebook) {
-                  padding-left: vw(60, $design-d);
-                }
-                @include breakpoint(mobile) {
-                  padding-left: vw(15, $design-m);
-                }
-              }
-              .sub-title {
-                padding-bottom: 16px;
-                border-bottom: 2px solid #fff;
-                font-weight: 700;
-                text-align: center;
-                @include breakpoint(notebook) {
-                  padding-bottom: vw(16, $design-d);
-                }
-                @include breakpoint(mobile) {
-                  padding-bottom: vw(10, $design-m);
-                }
-                .year {
-                  font-size: 16px;
-                  line-height: 19px;
-                  padding-bottom: 4px;
-                  @include breakpoint(notebook) {
-                    @include font-size(D, 16px);
-                    line-height: vw(19, $design-d);
-                    padding-bottom: vw(4, $design-d);
-                  }
-                  @include breakpoint(mobile) {
-                    @include font-size(M, 13px);
-                    line-height: vw(16, $design-m);
-                    padding-bottom: vw(2, $design-m);
-                  }
-                }
-                .quarter {
-                  font-family: "SamsungSharpSans", arial, sans-serif;
-                  font-size: 24px;
-                  line-height: 32px;
-                  @include breakpoint(notebook) {
-                    @include font-size(D, 24px);
-                    line-height: vw(32, $design-d);
-                  }
-                  @include breakpoint(mobile) {
-                    @include font-size(M, 15px);
-                    line-height: vw(19, $design-m);
-                  }
-                }
-              }
-              .cta-wrap {
-                padding-top: 24px;
-                @include breakpoint(notebook) {
-                  padding-top: vw(24, $design-d);
-                }
-                .financial-btn {
-                  width: 100%;
-                  @include breakpoint(mobile) {
-                    align-items: flex-start;
-                    gap: vw(30, $design-m);
-                  }
-                  &:first-child {
-                    align-items: baseline;
-                    @include breakpoint(mobile) {
-                      align-items: flex-start;
-                    }
-                  }
-                }
-                .icon {
-                  flex-shrink: 0;
-                }
-                .down-name {
-                  font-weight: 400;
-                  font-size: 18px;
-                  line-height: 24px;
-                  @include breakpoint(notebook) {
-                    @include font-size(D, 18px);
-                    line-height: vw(24, $design-d);
-                  }
-                  @include breakpoint(mobile) {
-                    @include font-size(M, 14px);
-                    line-height: vw(17, $design-m);
-                  }
-                }
-              }
-            }
+        .box {
+          height: 100%;
+          @include res-vw(M, width, 500px);
+          background-color: #000;
+          @include screen("desktop") {
+            @include res-vw(D, width, 550px);
           }
         }
       }
     }
   }
-  .ir-contents-btn {
-    position: relative;
-    .ir-contents-btn-inner {
-      .ir-about-us,
-      .ir-sustainability,
-      .ir-newsroom {
-        position: relative;
-        flex-grow: 1;
-        @include breakpoint(mobile) {
+  .sec-portfolio-skill {
+    background-color: #C06A47;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    @include res-vw(M, padding, 120px, 0);
+    @include screen("desktop") {
+      @include res-vw(D, padding, 60px, 0);
+    }
+    .portfolio-skill-scroll-text {
+      width: 100%;
+      .cover {
+        width: 100vw;
+        display: flex;
+        @include res-vw(M, margin-bottom, 50px);
+        @include screen("desktop") {
+          @include res-vw(D, margin-bottom, 100px);
         }
-        .image-area {
-          img {
-            width: 100%;
-          }
-        }
-        .floating-area {
-          position: absolute;
-          top: 0;
-          left: 0;
-          padding: 36px 0px 0px 40px;
-          @include breakpoint(notebook) {
-            padding: vw(36 0 0 40, $design-d);
-          }
-          @include breakpoint(mobile) {
-            padding: vw(25 25 0, $design-m);
-          }
-          .title {
-            font-family: "SamsungSharpSans", arial, sans-serif;
-            color: #fff;
-            display: inline-block;
-            font-weight: 700;
-            font-size: 38px;
-            line-height: 46px;
-            @include breakpoint(notebook) {
-              @include font-size(D, 38px);
-              line-height: vw(46, $design-d);
-            }
-            @include breakpoint(mobile) {
-              @include font-size(M, 27px);
-              line-height: vw(33, $design-m);
-            }
-          }
-          .ir-main-outlink-icon {
-            display: inline-block;
-            vertical-align: top;
-            background-image: url($img-url + "ir-main-outlink-icon.png");
-            background-size: auto 100%;
-            background-repeat: no-repeat;
-            width: 24px;
-            height: 24px;
-            margin-top: 6px;
-            @include breakpoint(notebook) {
-              width: vw(24, $design-d);
-              height: vw(24, $design-d);
-              margin-top: vw(6, $design-d);
-            }
-            @include breakpoint(mobile) {
-              width: vw(20, $design-m);
-              height: vw(20, $design-m);
-            }
-          }
+      }
+      .cover:nth-child(1) {
+        transform: rotate(-1deg);
+        background-color: #ff3796;
+      }
+      
+      .cover:nth-child(2) {
+        transform: rotate(1deg);
+        background-color: #ecfe04;
+        justify-content: flex-end;
+      }      
+      p {
+        color: #fff;
+        display: flex;
+        font-weight: 600;
+        @include font-size(M, 50px);
+        @include res-vw(M, padding, 30px, 0);
+        @include screen("desktop") {
+          @include font-size(D, 50px);
+          @include res-vw(D, padding, 30px, 0);
         }
       }
     }
   }
-  .ir-resources {
-    padding-bottom: 80px;
-    @include breakpoint(notebook) {
-      padding-bottom: vw(80, $design-d);
-    }
-    @include breakpoint(mobile) {
-      padding-bottom: vw(60, $design-m);
-    }
-    .ir-resources-inner {
-      display: flex;
-      flex-direction: row;
-      gap: 24px;
-      @include breakpoint(notebook) {
-        gap: vw(24, $design-d);
-      }
-      @include breakpoint(mobile) {
-        flex-direction: column;
-        gap: vw(20, $design-m);
-      }
-      .ir-column2-box {
-        background-color: #f4f4f4;
-        > div {
-          display: flex;
-          flex-direction: row;
-          justify-content: space-between;
-          align-items: center;
-          max-width: 628px;
-          margin: 0 auto;
-          @include breakpoint(mobile) {
-            flex-direction: column;
-            align-items: flex-start;
-            gap: vw(24, $design-m);
-          }
-        }
-        .title {
-          border-bottom: 1px solid #000;
-          padding-bottom: 2px;
-          @include breakpoint(notebook) {
-            padding-bottom: vw(2, $design-d);
-          }
-          @include breakpoint(mobile) {
-            padding-bottom: vw(2, $design-m);
-          }
-          a {
-            font-family: "Samsung Sharp Sans";
-            font-weight: 700;
-            line-height: 28px;
-            font-size: 28px;
-            @include breakpoint(notebook) {
-              @include font-size(D, 28px);
-              line-height: vw(28, $design-d);
-            }
-            @include breakpoint(mobile) {
-              @include font-size(M, 20px);
-              line-height: vw(20, $design-m);
-            }
-          }
-        }
-        .contact {
-          display: flex;
-          flex-direction: row;
-          gap: 10px;
-          align-items: center;
-          @include breakpoint(notebook) {
-            gap: vw(10, $design-d);
-          }
-          @include breakpoint(mobile) {
-            flex-direction: column;
-            align-items: flex-start;
-            gap: vw(4, $design-m);
-          }
-          .text {
-            font-weight: 400;
-            font-size: 16px;
-            line-height: 19px;
-            @include breakpoint(notebook) {
-              @include font-size(D, 15px);
-              line-height: vw(18, $design-d);
-            }
-            @include breakpoint(mobile) {
-              display: block;
-              @include font-size(M, 15px);
-              line-height: vw(18, $design-m);
-            }
-            a {
-              font-weight: 400;
-              font-size: 16px;
-              line-height: 19px;
-              @include breakpoint(notebook) {
-                @include font-size(D, 15px);
-                line-height: vw(18, $design-d);
-              }
-              @include breakpoint(mobile) {
-                display: block;
-                @include font-size(M, 15px);
-                line-height: vw(18, $design-m);
-              }
-            }
-          }
-          .bar {
-            display: inline-block;
-            width: 1px;
-            height: 15px;
-            background-color: #888;
-            @include breakpoint(notebook) {
-              height: vw(15, $design-d);
-            }
-            @include breakpoint(mobile) {
-              display: none;
-            }
-          }
-        }
-      }
-      .ir-faqs {
-        .contact {
-          @include breakpoint(mobile) {
-            gap: vw(14, $design-m);
-          }
-        }
-      }
-    }
+  .footer {
+    height: 100vh;
+    background-color: #000;
   }
-}
-.kr-main {
-  .ir-main-wrap {
-    .ir-main-kv {
-      .swiper-pagination-wrap {
-        .swiper-pagination-bullet {
-          @include breakpoint(desktop) {
-            &:nth-child(1) {
-              &::before {
-                content: "배당 기준일 안내";
-              }
-            }
-            &:nth-child(2) {
-              &::before {
-                content: "투자자 정보";
-              }
-            }
-            &:nth-child(3) {
-              &::before {
-                content: "실적발표 질문 접수 안내";
-              }
-            }
-          }
-        }
-      }
-    }
-    .ir-keyvisual__stock {
-      .ir-keyvisual__stock-inner {
-        .ir-keyvisual__stock-info {
-          .ir-stock-info-contents {
-            align-items: end;
-            @include breakpoint(mobile) {
-              align-items: center;
-            }
-            .ir-keyvisual__stock-fluctuant {
-              .ir-won,
-              .js-price-change,
-              .point,
-              .js-price-change-percent,
-              .ir-percent {
-                font-size: 16px;
-                line-height: 19px;
-                @include breakpoint(notebook) {
-                  @include font-size(D, 16px);
-                  line-height: vw(19, $design-d);
-                }
-                @include breakpoint(mobile) {
-                  @include font-size(M, 14px);
-                  line-height: vw(17, $design-m);
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-    .swiper-slide.ir-main-kv-performance-slide {
-      .floating-area {
-        .text-box {
-          .title {
-            @include breakpoint(notebook) {
-              @include font-size(D, 48px);
-              line-height: vw(49, $design-d);
-              padding-top: vw(10, $design-d);
-            }
-          }
-          .data {
-            @include breakpoint(notebook) {
-              padding-top: vw(4, $design-d);
-            }
-          }
-          .performance-outlink-wrap {
-            .btn-wrap {
-              .cta-wrap {
-                @include breakpoint(notebook) {
-                  padding-top: vw(14, $design-d);
-                }
-              }
-            }
-            .btn-title {
-              font-weight: 700;
-              font-size: 22px;
-              line-height: 29px;
-              @include breakpoint(notebook) {
-                @include font-size(D, 22px);
-                line-height: vw(29, $design-d);
-              }
-              @include breakpoint(mobile) {
-                @include font-size(M, 17px);
-                line-height: vw(22, $design-m);
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-  .ir-financial-statements {
-    .ir-financial-statements-inner {
-      .ir-content-box {
-        .ir-downloads-all {
-          justify-content: center;
-          .ir-download-wrap {
-            .download-item {
-              .cta-wrap {
-                .financial-btn {
-                  gap: 50px;
-                  @include breakpoint(notebook) {
-                    gap: vw(50, $design-d);
-                  }
-                  @include breakpoint(mobile) {
-                    gap: vw(15, $design-m);
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-  .ir-contents-btn {
-    .ir-contents-btn-inner {
-      .ir-column3-box {
-        .floating-area {
-          .title {
-            @include breakpoint(notebook) {
-              @include font-size(D, 32px);
-              line-height: vw(46, $design-d);
-            }
-          }
-        }
-      }
-    }
-  }
-}
+
+
+
+
+
+
+
