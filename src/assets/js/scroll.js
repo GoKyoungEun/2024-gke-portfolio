@@ -120,32 +120,39 @@ $('.portfolio-about-text p strong').mouseleave(function () {
 })
 
 
-// 탭 메뉴 클릭에 따라 컨텐츠 변경
+// 탭 메뉴
 function changeContent(contentId) {
   var i, tabcontent, tablinks;
 
-  // 모든 탭 컨텐츠를 숨기고, 페이드 아웃 효과를 적용합니다.
+  // 첫 번째 탭 컨텐츠를 제외한 나머지를 숨깁니다.
   tabcontent = document.getElementsByClassName("tabcontent");
   for (i = 0; i < tabcontent.length; i++) {
-    tabcontent[i].style.display = "none";
-    tabcontent[i].style.opacity = "0";
-  }
-
-  // 모든 탭 링크에서 'active' 클래스를 제거합니다.
-  tablinks = document.getElementsByClassName("tablinks");
-  for (i = 0; i < tablinks.length; i++) {
-    tablinks[i].className = tablinks[i].className.replace(" active", "");
-  }
-
-  // 선택된 탭 컨텐츠에 'show' 클래스를 추가하여 페이드 인 효과를 적용합니다.
-  var selectedContent = document.getElementById(contentId);
-  selectedContent.style.display = "block";
-  // display 속성이 변경된 후에 opacity 속성을 변경해야 합니다.
-  // 브라우저가 렌더링을 갱신할 시간을 주기 위해 setTimeout을 사용합니다.
-  setTimeout(function() {
-    selectedContent.style.opacity = "1";
-  }, 10);
+    if
+(tabcontent[i].id !== contentId) {
+tabcontent[i].style.display = "none";
+tabcontent[i].style.opacity = "0";
 }
+}
+
+// 모든 탭 링크에서 'active' 클래스를 제거합니다.
+tablinks = document.getElementsByClassName("tablinks");
+for (i = 0; i < tablinks.length; i++) {
+tablinks[i].className = tablinks[i].className.replace(" active", "");
+}
+
+// 선택된 탭 컨텐츠에 'show' 클래스를 추가하여 페이드 인 효과를 적용합니다.
+var selectedContent = document.getElementById(contentId);
+selectedContent.style.display = "block";
+setTimeout(function() {
+selectedContent.style.opacity = "1";
+}, 10);
+}
+
+// 페이지 로드 시 첫 번째 탭 컨텐츠를 활성화합니다.
+window.onload = function() {
+  changeContent("content1");
+};
+
 
 
 
@@ -190,8 +197,8 @@ function animate() {
 }
 
 function scrollHandler() {
-  count1 += 15
-  count2 += 15
+  count1 += 10
+  count2 += 10
 }
 
 window.addEventListener('scroll', scrollHandler)
