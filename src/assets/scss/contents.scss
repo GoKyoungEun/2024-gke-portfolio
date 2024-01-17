@@ -70,7 +70,7 @@
     @include res-vw(M, height, 80px);
     @include res-vw(M, padding, 0, 30px);
     @include screen("desktop") {
-      @include res-vw(D, height, 80px);
+      @include res-vw(D, height, 60px);
       @include res-vw(D, padding, 0, 30px);
     }
     .portfolio-nav {
@@ -79,7 +79,7 @@
       justify-content: space-between;
       @include res-vw(M, line-height, 80px);
       @include screen("desktop") {
-        @include res-vw(D, line-height, 80px);
+        @include res-vw(D, line-height, 60px);
       }
       .nav-logo {
         a {
@@ -90,7 +90,7 @@
           font-weight: 600;
           @include font-size(M, 20px);
           @include screen("desktop") {
-            @include font-size(D, 25px);
+            @include font-size(D, 20px);
           }
         }
       }
@@ -111,7 +111,7 @@
               color: #fff;
               transition: all 0.3s ease;
               @include screen("desktop") {
-                @include font-size(D, 20px);
+                @include font-size(D, 18px);
               }
             }
             &:hover {
@@ -204,7 +204,7 @@
           overflow: hidden;
           @include res-vw(M, width, 350px);
           @include res-vw(M, height, 400px);
-          @include res-vw(M, border-radius, 20px);
+          @include res-vw(M, border-radius, 30px);
           @include screen("desktop") {
             @include res-vw(D, width, 350px);
             @include res-vw(D, height, 400px);
@@ -338,10 +338,20 @@
         }
         .portfolio-work-item-img {
           overflow: hidden;
+          margin: 0 auto;
           @include screen("desktop") {
             @include res-vw(D, border-radius, 30px);
             @include res-vw(D, width, 500px);
             @include res-vw(D, height, 300px);
+          }
+          @include screen(custom, max, 1440) {
+            @include res-vw(D, width, 450px);
+            @include res-vw(D, height, 270px);
+          }
+          @include screen (custom, max, 768) {
+            @include res-vw(M, border-radius, 30px);
+            @include res-vw(M, width, 600px);
+            @include res-vw(M, height, 360px);
           }
 
         }
@@ -664,9 +674,12 @@
       .portfolio-contact-content-img {
         overflow: hidden;
         margin: 0 auto;
+        @include res-vw(M, border-radius, 30px);
         @include res-vw(M, width, 500px);
+        @include res-vw(M, height, 600px);
         @include screen("desktop") {
-          width: auto;
+          @include res-vw(D, width, 500px);
+          @include res-vw(D, height, 600px);
           @include res-vw(D, border-radius, 30px);
         }
       }
