@@ -1,4 +1,5 @@
 
+// svg path 애니메이션을 실행하는 함수
 let animationCompleted = false;
 
 function animateSVGPath() {
@@ -39,29 +40,27 @@ function animateSVGPath() {
     });
 }
 
-function resetAnimation() {
-    animationCompleted = false;
-    // .svg-box의 opacity를 0으로 설정
-    gsap.to('.svg-box svg', { opacity: 0, duration: 0.5 });
-}
+// ScrollTrigger를 사용하여 스크롤 위치에 따라 애니메이션 실행
 
 gsap.registerPlugin(ScrollTrigger);
 
+// svg-box가 뷰포트에 진입할 때 animateSVGPath 함수 실행
 ScrollTrigger.create({
-    trigger: ".svg-box",
-    start: "top center", // .svg-box가 뷰포트 아래쪽에 닿을 때
-    end: "bottom top", // .svg-box가 뷰포트 위쪽으로 사라질 때
-    onEnter: animateSVGPath,
-    onLeave: resetAnimation,
-    onEnterBack: animateSVGPath,
-    onLeaveBack: resetAnimation
+  trigger: ".svg-box",
+  start: "top center",
+  end: "bottom top",
+  onEnter: animateSVGPath,
+  onEnterBack: animateSVGPath,
+  once: true // animateSVGPath가 처음 등장할 때만 실행되도록 함
 });
 
+// .page2의 너비를 반환하는 함수
 function getWorkListWidth() {
-	const workList = document.querySelector('.work-list');
+	const workList = document.querySelector('.portfolio-work-list');
 	return workList ? workList.offsetWidth : 0; // workList가 존재하면 너비 반환, 그렇지 않으면 0 반환
   }
-  
+
+// .page2를 고정하는 애니메이션
 ScrollTrigger.create({
     trigger: ".sec-portfolio-work",
     start: "top top", // .page2의 상단이 뷰포트 상단에 도달했을 때 시작
@@ -70,7 +69,8 @@ ScrollTrigger.create({
     scrub: true, // 스크롤 위치에 따라 애니메이션 조정
 });
 
-gsap.to(".content-wrap", {
+// .page2의 애니메이션
+gsap.to(".portfolio-work-content-wrap", {
 	x: () => -getWorkListWidth(), // .content-wrap의 이동 거리를 동적으로 계산
 	ease: "none",
 	scrollTrigger: {
@@ -81,6 +81,17 @@ gsap.to(".content-wrap", {
 	}
 });
 
+//swiper
+var swiper = new Swiper(".mySwiper", {
+  spaceBetween: 30,
+  pagination: {
+    el: ".swiper-pagination",
+    clickable: true,
+  },
+});
+
+
+// KV 텍스트 타이핑 애니메이션
 document,addEventListener('DOMContentLoaded', () => {
     new TypeIt("#mainTitle", {
         speed: 150,
@@ -91,11 +102,54 @@ document,addEventListener('DOMContentLoaded', () => {
         .type("EUN", { delay: 100 })
         .type("<br>PORTFOLIO", { delay: 100 })
         .go();
-
 });
 
 
+// 텍스트 클릭에 따라 .portfolio-about-img 이미지 변경
+$('.portfolio-about-text p strong').mouseenter(function () {
+  let changeImage = $(this).attr('data-img')
+  $('.portfolio-about-img .nomal-img').css({
+    'background-image': 'url(' + changeImage + ')'
+  })
+})
+$('.portfolio-about-text p strong').mouseleave(function () {
+  $('.portfolio-about-img .nomal-img').css({
+    'background-image': ''
+  })
 
+})
+
+
+// 탭 메뉴 클릭에 따라 컨텐츠 변경
+function changeContent(contentId) {
+  var i, tabcontent, tablinks;
+
+  // 모든 탭 컨텐츠를 숨기고, 페이드 아웃 효과를 적용합니다.
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+    tabcontent[i].style.opacity = "0";
+  }
+
+  // 모든 탭 링크에서 'active' 클래스를 제거합니다.
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+
+  // 선택된 탭 컨텐츠에 'show' 클래스를 추가하여 페이드 인 효과를 적용합니다.
+  var selectedContent = document.getElementById(contentId);
+  selectedContent.style.display = "block";
+  // display 속성이 변경된 후에 opacity 속성을 변경해야 합니다.
+  // 브라우저가 렌더링을 갱신할 시간을 주기 위해 setTimeout을 사용합니다.
+  setTimeout(function() {
+    selectedContent.style.opacity = "1";
+  }, 10);
+}
+
+
+
+// 스크롤 롤링 텍스트 애니메이션
 const pTag1 = document.querySelector('.first-parallel')
 const pTag2 = document.querySelector('.second-parallel')
 
@@ -142,22 +196,3 @@ function scrollHandler() {
 
 window.addEventListener('scroll', scrollHandler)
 animate()
-
-$('.portfolio-about-text p strong').mouseenter(function () {
-  let changeImage = $(this).attr('data-img')
-  let changeRotateImage = $(this).attr('data-rotate-img')
-  $('.portfolio-about-img .nomal-img').css({
-    'background-image': 'url(' + changeImage + ')'
-  })
-  $('.portfolio-about-img .rotate-img').css({
-    'background-image': 'url(' + changeRotateImage + ')'
-  })
-})
-$('.portfolio-about-text p strong').mouseleave(function () {
-  $('.portfolio-about-img .nomal-img').css({
-    'background-image': ''
-  })
-  $('.portfolio-about-img .rotate-img').css({
-    'background-image': ''
-  })
-})

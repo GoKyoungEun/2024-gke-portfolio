@@ -6,6 +6,18 @@
     margin: 0;
     box-sizing: border-box;
   }
+  .pc-only {
+    display: none;
+    @include screen("desktop") {
+      display: block;
+    }
+  }
+  .mo-only {
+    display: block;
+    @include screen("desktop") {
+      display: none;
+    }
+  }
   body {
     overflow-x: hidden;
     font-family: 'IBM Plex Sans KR', sans-serif;
@@ -96,8 +108,9 @@
   .sec-portfolio-about {
     background-color: #222;
     height: max-content;
-    @include res-vw(M, padding, 120px, 0, 120px, 0);
+    @include res-vw(M, padding-bottom, 200px);
     @include screen("desktop") {
+      height: 100vh;
       @include res-vw(D, padding, 120px, 0, 60px, 0);
     }
     .portfolio-about-content-wrap {
@@ -105,7 +118,7 @@
       height: max-content;
       justify-content: center;
       flex-direction: column;
-      @include res-vw(M, gap, 100px);
+      @include res-vw(M, gap, 80px);
       @include screen("desktop") {
         flex-direction: row;
         @include res-vw(D, gap, 100px);
@@ -113,22 +126,25 @@
       .portfolio-about-img {
         flex-shrink: 0;
         position: relative;
-        @include res-vw(M, width, 600px);
+        @include res-vw(M, width, 350px);
         margin: 0 auto;
         @include screen("desktop") {
           height: auto;
-          @include res-vw(D, width, 500px);
+          @include res-vw(D, width, 350px);
         }
         .img-box {
           background-repeat: no-repeat;
           background-size: cover;
           background-position: center center;
           transition: all 0.5s ease;
-          @include res-vw(M, width, 300px);
-          @include res-vw(M, height, 343px);
+          overflow: hidden;
+          @include res-vw(M, width, 350px);
+          @include res-vw(M, height, 400px);
+          @include res-vw(M, border-radius, 20px);
           @include screen("desktop") {
             @include res-vw(D, width, 350px);
             @include res-vw(D, height, 400px);
+            @include res-vw(D, border-radius, 20px);
           }
           &.nomal-img {
             background-image: url('../images/portfolio-about-data-rotate-img0-pc.jpg');
@@ -151,9 +167,9 @@
       .portfolio-about-text {
         color: #ebebeb;
         margin: 0 auto;
-        @include res-vw(M, max-width, 600px);
+        font-weight: 300;
         @include screen("desktop") {
-          @include res-vw(D, max-width, 780px);
+          max-width: 100%;
         }
         h2 {
           @include font-size(M, 40px);
@@ -197,59 +213,346 @@
     }
   }
   .sec-portfolio-work {
-    background-color: #EFE2D2;
+    background-color: #C06A47;
     overflow: hidden;
-    .content-wrap {
+    height: max-content;
+    @include screen("desktop") {
+      height: 100vh;
+      @include res-vw(D, padding, 0, 30px);
+    }
+    .portfolio-work-content-wrap {
       width: 100%;
       height: 100%;
       @include screen("desktop") {
         display: flex;
         flex-direction: row;
+        align-items: center;
+        @include res-vw(D, gap, 100px);
       }
       .svg-box {
-        display: none;
         @include screen("desktop") {
-          display: block;
           box-sizing: border-box;
+          text-align: center;
           height: 100%;
           flex-shrink: 0;
-          @include res-vw(D, width, 600px);
+          @include res-vw(D, width, 500px);
         }
         svg {
           opacity: 0;
+          margin: 0 auto;
+          @include res-vw(D, width, 300px);
+        }
+        h2 {
+          color: #fff;
+          font-weight: 700;
+          @include font-size(M, 40px);
+          @include res-vw(M, padding-top, 30px);
+          @include screen("desktop") {
+            @include font-size(D, 80px);
+            @include line-height(80, 90);
+            @include res-vw(D, padding-top, 50px);
+          }
         }
       }
-      .work-list {
-        background-color: #EFE2D2;
+      .portfolio-work-list {
         flex-shrink: 0;
         height: 100%;
         display: flex;
         flex-direction: row;
-        @include res-vw(M, width, 3000px);
-        @include res-vw(M, gap, 50px);
+        height: max-content;
         @include screen("desktop") {
-          @include res-vw(D, width, 3000px);
-          @include res-vw(D, gap, 50px);
+          @include res-vw(D, width, 2500px);
+          @include res-vw(D, gap, 90px);
         }
-        .box {
-          height: 100%;
-          @include res-vw(M, width, 500px);
-          background-color: #000;
+        .portfolio-work-item {
+          display: flex;
+          flex-direction: column;
+          @include res-vw(M, gap, 30px);
           @include screen("desktop") {
-            @include res-vw(D, width, 550px);
+            @include res-vw(D, gap, 30px);
           }
+        }
+        .portfolio-work-item-img {
+          overflow: hidden;
+          @include screen("desktop") {
+            @include res-vw(D, border-radius, 30px);
+            @include res-vw(D, width, 500px);
+            @include res-vw(D, height, 300px);
+          }
+
+        }
+        .portfolio-work-item-text {
+          display: flex;
+          flex-direction: column;
+          text-align: center;
+          color: #efe2d2;
+          margin: 0 auto;
+          @include res-vw(M, gap, 20px);
+          @include res-vw(M, max-width, 600px);
+          @include screen("desktop") {
+            @include res-vw(D, max-width, 500px);
+            @include res-vw(D, gap, 20px);
+          }
+          .portfolio-work-item-title {
+            h3 {
+              font-weight: bold;
+              @include font-size(M, 45px);
+              @include line-height(45, 55);
+              @include screen("desktop") {
+                @include font-size(D, 40px);
+                @include line-height(40, 40);
+              }
+            }
+            h4 {
+              font-weight: 400;
+              @include font-size(M, 35px);
+              @include line-height(35, 45);
+              @include screen("desktop") {
+                @include font-size(D, 25px);
+                @include line-height(25, 25);
+                @include res-vw(D, margin-top, 5px);
+              }
+            }
+          }
+          .portfolio-work-item-copy {
+            p {
+              font-weight: 400;
+              @include font-size(M, 30px);
+              @include line-height(30, 45);              @include screen("desktop") {
+                @include font-size(D, 20px);
+                @include line-height(20, 30);
+              }
+            }
+            a {
+              box-sizing: border-box;
+              display: inline-block;
+              text-decoration: none;
+              color: #C06A47;
+              border: 1px solid #efe2d2;
+              background-color: #efe2d2;
+              font-weight: 400;
+              transition: all 0.3s ease;
+              @include font-size(M, 25px);
+              @include line-height(25, 35);
+              @include res-vw(M, margin-top, 30px);
+              @include res-vw(M, padding, 15px, 40px);
+              @include res-vw(M, border-radius, 50px);
+              @include screen("desktop") {
+                @include font-size(D, 20px);
+                @include line-height(20, 20);
+                @include res-vw(D, margin-top, 30px);
+                @include res-vw(D, padding, 13px, 22px);
+                @include res-vw(D, border-radius, 50px);
+              }
+
+            }
+            &:hover {
+              a {
+                background-color: #C06A47;
+                color: #efe2d2;
+              }
+            }
+          }
+        }
+      }
+    }
+    &.mo-only {
+      .portfolio-work-content-wrap {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        @include res-vw(M, padding, 120px, 30px, 120px);
+        @include res-vw(M, gap, 80px);
+        @include res-vw(M, margin-bottom, 60px);
+        .portfolio-work-content-title {
+          @include font-size(M, 50px);
+          @include line-height(50, 70);
+          text-align: center;
+          color: #efe2d2;
+        }
+        .portfolio-work-list {
+          .portfolio-work-item {
+            .portfolio-work-item-img {
+              text-align: center;
+              overflow: hidden;
+              @include res-vw(M, border-radius, 30px);
+            }
+          }
+        }
+      }
+      .swiper-pagination-bullet {
+        &.swiper-pagination-bullet-active {
+          --swiper-theme-color: #EED99A;
         }
       }
     }
   }
   .sec-portfolio-skill {
+    background-color: #EEEEE4;
+    position: relative;
+    @include res-vw(M, padding, 60px, 30px);
+    @include res-vw(M, height, 1000px);
+    @include screen("desktop") {
+      @include res-vw(D, padding, 60px, 0, 60px, 0);
+      @include res-vw(D, height, 900px);
+    }
+    .portfolio-skill-title {
+      @include screen("desktop") {
+        margin: 0 auto;
+        @include res-vw(D, max-width, 1440px);
+        @include res-vw(D, padding, 0, 30px);
+      }
+      h2 {
+        text-align: center;
+        @include font-size(M, 60px);
+        @include line-height(60, 70);
+        @include screen("desktop") {
+          text-align: left;
+          @include font-size(D, 60px);
+          @include line-height(60, 80);
+        }
+        &.padding-left {
+          @include screen("desktop") {
+            @include res-vw(D, padding-left, 60px);
+          }
+        }
+      }
+    }
+    .portfolio-skill-content {
+      margin: 0 auto;
+      text-align: center;
+      height: max-content;
+      @include res-vw(M, width, 500px);
+      @include res-vw(M, padding-top, 100px);
+      @include screen("desktop") {
+        @include res-vw(D, width, 1000px);
+        @include res-vw(D, padding-top, 100px);
+      }
+      .tabcontent {
+        position: relative;
+        p {
+          @include font-size(M, 25px);
+          @include line-height(25, 40);
+          @include screen("desktop") {
+            @include font-size(D, 25px);
+            @include line-height(25, 40);
+          }
+        }
+        &::before {
+          content: '';
+          background: url('../images/double-quotes-left.svg') no-repeat center/cover;
+          position: absolute;
+          z-index: 1;
+          @include res-vw(M, width, 33px);
+          @include res-vw(M, height, 24px);
+          @include res-vw(M, top, -10px);
+          @include res-vw(M, left, -30px);
+          @include screen("desktop") {
+            @include res-vw(D, width, 33px);
+            @include res-vw(D, height, 24px);
+            @include res-vw(D, top, -10px);
+            @include res-vw(D, left, -30px);
+          }
+        }
+        &::after {
+          content: '';
+          background: url('../images/double-quotes-right.svg') no-repeat center/cover;
+          position: absolute;
+          z-index: 1;
+          @include res-vw(M, width, 33px);
+          @include res-vw(M, height, 24px);
+          @include res-vw(M, bottom, 0px); 
+          @include res-vw(M, right, -25px);
+          @include screen("desktop") {
+            @include res-vw(D, width, 33px);
+            @include res-vw(D, height, 24px);
+            @include res-vw(D, bottom, 0px);
+            @include res-vw(D, right, -25px);
+          }
+        }
+      }
+    }
+    .tab {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: row;
+      @include res-vw(M, bottom, -50px);
+      @include screen("desktop") {
+        @include res-vw(D, bottom, -100px);
+      }
+      button {
+        border: none;
+        cursor: pointer;
+        text-align: left;
+        color: #fff;
+        transition: margin-top 0.3s ease, box-shadow 0.3s ease;
+        margin-top: 0;
+        @include font-size(M, 25px);
+        @include line-height(20, 25);
+        @include res-vw(M, padding, 20px, 20px, 100px, 20px);
+        @include res-vw(M, border-radius, 30px);
+        @include res-vw(M, width, 170px);
+        @include res-vw(M, height, 250px);
+        @include screen("desktop") {
+          @include font-size(D, 40px);
+          @include line-height(40, 45);
+          @include res-vw(D, padding, 40px, 40px, 250px, 40px);
+          @include res-vw(D, border-radius, 30px);
+          @include res-vw(D, width, 300px);
+          @include res-vw(D, height, 400px);
+        }
+        &.web-standards {
+          transform: rotate(-10deg);
+          background-color: #c06a47;
+        }
+        &.responsive {
+          transform: rotate(5deg);
+          background-color: #EED99A;
+          color: #C06A47;
+        }
+        &.skills {
+          transform: rotate(-5deg);
+          background-color: #5B6D93;
+        }
+        &.cooperation {
+          transform: rotate(10deg);
+          background-color: #9B8F9D;
+        }
+        &:hover,
+        &:focus {
+          box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.4); 
+          @include res-vw(M, margin-top, -20px);
+          @include screen("desktop") {
+            @include res-vw(D, margin-top, -30px);
+          }
+        }
+      }
+    }
+    .tabcontent {
+      display: none;
+      border-top: none; 
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
+      &.show {
+        display: block;
+        opacity: 1;
+      }
+    }
+    
+  }
+  .sec-portfolio-contact {
     background-color: #C06A47;
     display: flex;
-    flex-direction: column;
     overflow: hidden;
+    height: max-content;
+    flex-direction: column;
+    @include res-vw(M, gap, 50px);
     @include res-vw(M, padding, 120px, 0);
     @include screen("desktop") {
-      @include res-vw(D, padding, 60px, 0);
+      @include res-vw(D, padding, 100px, 0);
+      @include res-vw(D, gap, 100px);
     }
     .portfolio-skill-scroll-text {
       width: 100%;
@@ -258,35 +561,128 @@
         display: flex;
         @include res-vw(M, margin-bottom, 50px);
         @include screen("desktop") {
-          @include res-vw(D, margin-bottom, 100px);
+          @include res-vw(D, margin-bottom, 50px);
         }
       }
       .cover:nth-child(1) {
         transform: rotate(-1deg);
-        background-color: #ff3796;
+        background-color: #5B6D93;
       }
       
       .cover:nth-child(2) {
         transform: rotate(1deg);
-        background-color: #ecfe04;
+        background-color: #EED99A;
         justify-content: flex-end;
       }      
       p {
         color: #fff;
         display: flex;
         font-weight: 600;
-        @include font-size(M, 50px);
+        @include font-size(M, 30px);
         @include res-vw(M, padding, 30px, 0);
         @include screen("desktop") {
-          @include font-size(D, 50px);
-          @include res-vw(D, padding, 30px, 0);
+          @include font-size(D, 40px);
+          @include res-vw(D, padding, 10px, 0);
+        }
+      }
+    }
+    .portfolio-contact-wrap {
+      display: flex;
+      flex-direction: column;
+      @include res-vw(M, gap, 50px);
+      @include res-vw(M, padding, 0, 30px);
+      @include screen("desktop") {
+        flex-direction: row;
+        margin: 0 auto;
+        @include res-vw(D, padding, 0, 30px);
+        @include res-vw(D, max-width, 1440px);
+        @include res-vw(D, gap, 50px);
+      }
+      .portfolio-contact-content-img {
+        overflow: hidden;
+        @include screen("desktop") {
+          @include res-vw(D, border-radius, 30px);
+        }
+      }
+      .portfolio-contact-content-text {
+        display: flex;
+        flex-direction: column;
+        color: #fff;
+        @include res-vw(M, gap, 30px);
+        @include screen("desktop") {
+          @include res-vw(D, gap, 30px);
+        }
+        .portfolio-contact-content-title {
+          h2 {
+            @include font-size(M, 40px);
+            @include line-height(40, 60);
+            @include screen("desktop") {
+              @include font-size(D, 60px);
+              @include line-height(60, 80);
+            }
+          }
+        }
+        .portfolio-contact-content-copy {
+          display: flex;
+          flex-direction: column;
+          @include res-vw(M, gap, 30px);
+          @include screen("desktop") {
+            @include res-vw(D, gap, 20px);
+          } 
+          p {
+            position: relative;
+            display: inline-block;
+            @include font-size(M, 35px);
+            @include screen("desktop") {
+              font-weight: 600;
+              @include res-vw(D, margin-bottom, 10px);
+              @include font-size(D, 20px);
+              @include line-height(20, 30);
+            }
+            &::before {
+              display: block;
+              content: '';
+              position: absolute;
+              bottom: -1px;
+              left: 0;
+              height: 1px;
+              width: 100%;
+              background: #fff;
+            }
+          }
+          span, a {
+            color: #fff;
+            text-decoration: none;
+            display: block;
+            @include font-size(M, 30px);
+            @include screen("desktop") {
+              @include font-size(D, 18px);
+              @include line-height(18, 30);
+            }
+          }
         }
       }
     }
   }
   .footer {
-    height: 100vh;
-    background-color: #000;
+    height: 100px;
+    background-color: #222;
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #ddd;
+      flex-direction: column;
+      @include res-vw(M, padding, 50px, 30px);
+      @include res-vw(M, gap, 10px);
+      @include screen("desktop") {
+        flex-direction: row;
+        margin: 0 auto;
+        @include res-vw(D, padding, 40px, 30px);
+        @include res-vw(D, max-width, 1440px);
+        @include res-vw(D, gap, 50px);
+      }
+    }
   }
 
 
