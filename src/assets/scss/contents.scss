@@ -394,7 +394,7 @@
     @include res-vw(M, height, 1000px);
     @include screen("desktop") {
       @include res-vw(D, padding, 60px, 0, 60px, 0);
-      @include res-vw(D, height, 900px);
+      @include res-vw(D, height, 850px);
     }
     .portfolio-skill-title {
       @include screen("desktop") {
@@ -407,7 +407,6 @@
         @include font-size(M, 60px);
         @include line-height(60, 70);
         @include screen("desktop") {
-          text-align: left;
           @include font-size(D, 60px);
           @include line-height(60, 80);
         }
@@ -480,7 +479,7 @@
       flex-direction: row;
       @include res-vw(M, bottom, -50px);
       @include screen("desktop") {
-        @include res-vw(D, bottom, -100px);
+        @include res-vw(D, bottom, -50px);
       }
       button {
         border: none;
@@ -501,7 +500,7 @@
           @include res-vw(D, padding, 40px, 40px, 250px, 40px);
           @include res-vw(D, border-radius, 30px);
           @include res-vw(D, width, 300px);
-          @include res-vw(D, height, 400px);
+          @include res-vw(D, height, 350px);
         }
         &.web-standards {
           transform: rotate(-10deg);
