@@ -261,7 +261,7 @@
         flex-direction: row;
         height: max-content;
         @include screen("desktop") {
-          @include res-vw(D, width, 2500px);
+          @include res-vw(D, width, 2800px);
           @include res-vw(D, gap, 90px);
         }
         .portfolio-work-item {
