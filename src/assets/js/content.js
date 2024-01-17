@@ -1,4 +1,5 @@
 
+
 // svg path 애니메이션을 실행하는 함수
 let animationCompleted = false;
 
@@ -203,3 +204,16 @@ function scrollHandler() {
 
 window.addEventListener('scroll', scrollHandler)
 animate()
+
+
+$(document).ready(function() {
+  // 스크롤 이벤트 처리
+  $(".nav-menu ul li a").click(function(e) {
+      e.preventDefault();
+      let targetId = $(this).attr('href');
+      $('html, body').animate({
+          scrollTop: $(targetId).offset().top
+      }, 1000);
+  });
+});
+

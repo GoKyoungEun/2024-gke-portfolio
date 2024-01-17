@@ -61,8 +61,70 @@
     overflow: hidden;
     height: 100vh;
   }
-  .sec-portfolio-kv {
+  .portfolio-nav-wrap {
+    position: fixed;
+    z-index: 10;
+    width: 100%;
     background-color: #222;
+    @include res-vw(M, height, 80px);
+    @include res-vw(M, padding, 0, 30px);
+    @include screen("desktop") {
+      @include res-vw(D, height, 80px);
+      @include res-vw(D, padding, 0, 30px);
+    }
+    .portfolio-nav {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      @include res-vw(M, line-height, 80px);
+      @include screen("desktop") {
+        @include res-vw(D, line-height, 80px);
+      }
+      .nav-logo {
+        a {
+          text-decoration: none;
+        }
+        p {
+          color: #fff;
+          font-weight: 600;
+          @include font-size(M, 20px);
+          @include screen("desktop") {
+            @include font-size(D, 25px);
+          }
+        }
+      }
+      .nav-menu {
+        ul {
+          display: flex;
+          flex-direction: row;
+          @include res-vw(M, gap, 20px);
+          @include screen("desktop") {
+            @include res-vw(D, gap, 40px);
+          }
+          li {
+            list-style: none;
+            a {
+              @include font-size(M, 20px);
+              display: inline-block;
+              text-decoration: none;
+              color: #fff;
+              transition: all 0.3s ease;
+              @include screen("desktop") {
+                @include font-size(D, 20px);
+              }
+            }
+            &:hover {
+              a {
+                color: #C06A47;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .sec-portfolio-kv {
+    background-color: rgb(34, 34, 34);
     position: relative;
     .portfolio-kv-logo {
       color: #fff;
@@ -106,9 +168,10 @@
     }
   }
   .sec-portfolio-about {
-    background-color: #222;
+    background-color: rgb(34, 34, 34);
     height: max-content;
     @include res-vw(M, padding-bottom, 200px);
+    @include res-vw(M, padding-top, 100px);
     @include screen("desktop") {
       height: 100vh;
       @include res-vw(D, padding, 120px, 0, 60px, 0);
@@ -213,7 +276,7 @@
     }
   }
   .sec-portfolio-work {
-    background-color: #C06A47;
+    background-color: rgb(192, 106, 71);
     overflow: hidden;
     height: max-content;
     @include screen("desktop") {
@@ -388,12 +451,12 @@
     }
   }
   .sec-portfolio-skill {
-    background-color: #EEEEE4;
+    background-color: rgb(238, 238, 228);
     position: relative;
-    @include res-vw(M, padding, 60px, 30px);
+    @include res-vw(M, padding, 120px, 30px);
     @include res-vw(M, height, 1000px);
     @include screen("desktop") {
-      @include res-vw(D, padding, 60px, 0, 60px, 0);
+      @include res-vw(D, padding, 120px, 0, 60px, 0);
       @include res-vw(D, height, 850px);
     }
     .portfolio-skill-title {
@@ -422,10 +485,10 @@
       text-align: center;
       height: max-content;
       @include res-vw(M, width, 500px);
-      @include res-vw(M, padding-top, 100px);
+      @include res-vw(M, padding-top, 120px);
       @include screen("desktop") {
         @include res-vw(D, width, 1000px);
-        @include res-vw(D, padding-top, 100px);
+        @include res-vw(D, padding-top, 80px);
       }
       .tabcontent {
         position: relative;
@@ -542,7 +605,7 @@
     
   }
   .sec-portfolio-contact {
-    background-color: #C06A47;
+    background-color: rgb(192, 106, 71);
     display: flex;
     overflow: hidden;
     height: max-content;
@@ -599,7 +662,10 @@
       }
       .portfolio-contact-content-img {
         overflow: hidden;
+        margin: 0 auto;
+        @include res-vw(M, width, 500px);
         @include screen("desktop") {
+          width: auto;
           @include res-vw(D, border-radius, 30px);
         }
       }
@@ -608,7 +674,10 @@
         flex-direction: column;
         color: #fff;
         @include res-vw(M, gap, 30px);
+        @include res-vw(M, width, 500px);
+        margin: 0 auto;
         @include screen("desktop") {
+          width: auto;
           @include res-vw(D, gap, 30px);
         }
         .portfolio-contact-content-title {
@@ -672,8 +741,8 @@
       align-items: center;
       color: #ddd;
       flex-direction: column;
-      @include res-vw(M, padding, 50px, 30px);
-      @include res-vw(M, gap, 10px);
+      @include res-vw(M, padding, 20px, 30px);
+      @include res-vw(M, gap, 5px);
       @include screen("desktop") {
         flex-direction: row;
         margin: 0 auto;
