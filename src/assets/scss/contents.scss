@@ -562,9 +562,9 @@
         color: #fff;
         transition: margin-top 0.3s ease, box-shadow 0.3s ease;
         margin-top: 0;
-        @include font-size(M, 25px);
-        @include line-height(20, 25);
-        @include res-vw(M, padding, 20px, 20px, 100px, 20px);
+        @include font-size(M, 23px);
+        @include line-height(23, 25);
+        @include res-vw(M, padding, 10px, 0, 140px, 15px);
         @include res-vw(M, border-radius, 30px);
         @include res-vw(M, width, 170px);
         @include res-vw(M, height, 250px);
@@ -593,11 +593,15 @@
           transform: rotate(10deg);
           background-color: #9B8F9D;
         }
-        &:hover,
-        &:focus {
+        &:hover {
           box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.4); 
           @include res-vw(M, margin-top, -20px);
           @include screen("desktop") {
+            @include res-vw(D, margin-top, -30px);
+          }
+        }
+        @include screen(custom, max, 768) { 
+          &:focus {
             @include res-vw(D, margin-top, -30px);
           }
         }
