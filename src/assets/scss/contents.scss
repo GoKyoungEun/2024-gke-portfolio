@@ -325,7 +325,7 @@
         flex-direction: row;
         height: max-content;
         @include screen("desktop") {
-          @include res-vw(D, width, 2800px);
+          width: max-content;
           @include res-vw(D, gap, 90px);
         }
         .portfolio-work-item {
@@ -392,7 +392,8 @@
             p {
               font-weight: 400;
               @include font-size(M, 30px);
-              @include line-height(30, 45);              @include screen("desktop") {
+              @include line-height(30, 45); 
+              @include screen("desktop") {
                 @include font-size(D, 20px);
                 @include line-height(20, 30);
               }
@@ -418,10 +419,7 @@
                 @include res-vw(D, padding, 13px, 22px);
                 @include res-vw(D, border-radius, 50px);
               }
-
-            }
-            &:hover {
-              a {
+              &:hover {
                 background-color: #C06A47;
                 color: #efe2d2;
               }
